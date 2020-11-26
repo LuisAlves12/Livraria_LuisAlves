@@ -15,4 +15,5 @@ Generos
 </a></li>
 @endforeach
 </ul>
+<a href="{{route('generos.create')}}" class="btn btn-info" role="button">Adiciona Generos</a>
 @endsection

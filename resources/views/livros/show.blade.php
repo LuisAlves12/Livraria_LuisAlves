@@ -1,5 +1,8 @@
 @extends('layout')
 @section('titulo-pagina')
+Livraria 
+@endsection
+@section('Titulo')
 Livro: 
 @endsection
 @section('conteudo')
@@ -8,7 +11,11 @@ ID:{{$livro->id_livro}}<br>
 Titulo:{{$livro->titulo}}<br>
 Idioma:{{$livro->idioma}}<br>
 ISBN:{{$livro->isbn}}<br>
-Data Edição:{{$livro->data_edicao}}<br>
+
+@if(!is_null($livro->data_edicao))
+Data Edição:{{$livro->data_edicao->format('d-m-Y')}}<br>
+@endif
+
 Total paginas:{{$livro->total_paginas}}<br>
 Observações:{{$livro->observacoes}}<br>
 Imagem Capa:{{$livro->imagem_capa}}<br>

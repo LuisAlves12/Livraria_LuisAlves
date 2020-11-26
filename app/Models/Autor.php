@@ -10,6 +10,15 @@ class Autor extends Model
     use HasFactory;
     protected $primaryKey="id_autor";
     protected $table="autores";  
+    protected $fillable=[
+        'nome',
+        'nacionalidade',
+        'data_nascimento',
+        'fotografia'
+    ];
+    protected $dates=[
+        'data_nascimento'
+    ];
     /*public function livros(){
         return $this->hasMany('App\Models\Livro','id_autor');
     }*/

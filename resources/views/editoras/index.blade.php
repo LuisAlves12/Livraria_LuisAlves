@@ -15,4 +15,5 @@ Editoras
 </a></li>
 @endforeach
 </ul>
+<a href="{{route('editoras.create')}}" class="btn btn-info" role="button">Adiciona Editoras</a>
 @endsection

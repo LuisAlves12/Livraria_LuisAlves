@@ -22,6 +22,9 @@ class Livro extends Model
         'id_autor',
         'sinopse'
     ];
+    protected $dates=[
+        'data_edicao'
+    ];
     public function genero(){
         return $this->belongsTo('App\Models\Genero','id_genero');
     }

@@ -2,7 +2,7 @@
 @section('titulo-pagina')
 Livraria
 @endsection
-@section('titulo-pagina')
+@section('Titulo')
 Pesquisa: 
 @endsection
 @section('conteudo')

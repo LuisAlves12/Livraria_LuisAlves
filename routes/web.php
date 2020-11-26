@@ -36,6 +36,12 @@ Route::get('/generos','App\Http\Controllers\GenerosController@index')
 Route::get('/generos/{idg}/show','App\Http\Controllers\GenerosController@show')
     ->name('generos.show');
 
+Route::get('/generos/create','App\Http\Controllers\GenerosController@create')
+    ->name('generos.create');
+
+Route::post('/generos/store','App\Http\Controllers\GenerosController@store')
+    ->name('generos.store');
+
 
 //Route Editoras
 
@@ -45,6 +51,12 @@ Route::get('/editoras','App\Http\Controllers\EditorasController@index')
 Route::get('/editoras/{ide}/show','App\Http\Controllers\EditorasController@show')
     ->name('editoras.show');
 
+Route::get('/editoras/create','App\Http\Controllers\EditorasController@create')
+    ->name('editoras.create');
+
+Route::post('/editoras/store','App\Http\Controllers\EditorasController@store')
+    ->name('editoras.store');
+
 
 //Route Autores
 
@@ -53,6 +65,12 @@ Route::get('/autores','App\Http\Controllers\AutoresController@index')
 
 Route::get('/autores/{ida}/show','App\Http\Controllers\AutoresController@show')
     ->name('autores.show');
+
+Route::get('/autores/create','App\Http\Controllers\AutoresController@create')
+    ->name('autores.create');
+
+Route::post('/autores/store','App\Http\Controllers\AutoresController@store')
+    ->name('autores.store');
 
 
 //Route Edições

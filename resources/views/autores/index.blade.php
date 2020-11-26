@@ -15,4 +15,5 @@ Autores
 </a></li>
 @endforeach
 </ul>
+<a href="{{route('autores.create')}}" class="btn btn-info" role="button">Adiciona Autores</a>
 @endsection

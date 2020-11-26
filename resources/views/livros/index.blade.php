@@ -16,4 +16,5 @@ Livros
 </li>
 @endforeach
 </ul>
+<a href="{{route('livros.create')}}" class="btn btn-info" role="button">Adiciona Livros</a>
 @endsection
