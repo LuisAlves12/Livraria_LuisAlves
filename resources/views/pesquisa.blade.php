@@ -2,6 +2,9 @@
 @section('titulo-pagina')
 Livraria
 @endsection
+@section('titulo-pagina')
+Pesquisa: 
+@endsection
 @section('conteudo')
 <form method="post" action="{{route('pesquisa.form')}}">
     @csrf

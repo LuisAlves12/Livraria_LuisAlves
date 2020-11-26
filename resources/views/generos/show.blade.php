@@ -1,4 +1,10 @@
 @extends('layout')
+@section('titulo-pagina')
+Livraria
+@endsection
+@section('Titulo')
+Genero
+@endsection
 <ul>
 IDG:{{$genero->id_genero}}<br>
 Designacao:{{$genero->designacao}}<br>

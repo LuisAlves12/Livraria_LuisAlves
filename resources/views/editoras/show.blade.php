@@ -1,4 +1,12 @@
 @extends('layout')
+@extends('layout')
+@section('titulo-pagina')
+Livraria
+@endsection
+@section('Titulo')
+Editora
+@endsection
+@section('conteudo')
 <ul>
 IDE:{{$editora->id_editora}}<br>
 Nome:{{$editora->nome}}<br>
@@ -19,3 +27,4 @@ Created_at:{{$editora->created_at}}<br>
 Updated_at:{{$editora->updated_at}}<br>
 Deleted_at:{{$editora->deleted_at}}
 </ul>
+@endsection

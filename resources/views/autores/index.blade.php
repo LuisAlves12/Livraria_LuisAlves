@@ -2,6 +2,9 @@
 @section('titulo-pagina')
 Livraria
 @endsection
+@section('Titulo')
+Autores
+@endsection
 @section('conteudo')
 <ul>
 {{$autores->render()}}

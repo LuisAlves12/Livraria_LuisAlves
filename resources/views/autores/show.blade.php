@@ -1,4 +1,11 @@
 @extends('layout')
+@section('titulo-pagina')
+Livraria
+@endsection
+@section('Titulo')
+Autores
+@endsection
+@section('conteudo')
 <ul>
 IDA:{{$autores->id_autor}}<br>
 Nome:{{$autores->nome}}<br>
@@ -18,3 +25,4 @@ Created_at:{{$autores->created_at}}<br>
 Updated_at:{{$autores->updated_at}}<br>
 Deleted_at:{{$autores->deleted_at}}
 </ul>
+@endsection

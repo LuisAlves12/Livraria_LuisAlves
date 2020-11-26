@@ -2,6 +2,9 @@
 @section('titulo-pagina')
 Livraria
 @endsection
+@section('Titulo')
+Livros
+@endsection
 @section('conteudo')
 <ul>
 {{$livros->render()}}

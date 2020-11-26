@@ -13,35 +13,58 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Routes Livros
+
 Route::get('/livros','App\Http\Controllers\LivrosController@index')
     ->name('livros.index');
-
-Route::get('/generos','App\Http\Controllers\GenerosController@index')
-    ->name('generos.index');
-
-Route::get('/editoras','App\Http\Controllers\EditorasController@index')
-    ->name('editoras.index');
-
-Route::get('/autores','App\Http\Controllers\AutoresController@index')
-    ->name('autores.index');
 
 Route::get('/livros/{id}/show','App\Http\Controllers\LivrosController@show')
     ->name('livros.show');
 
+Route::get('/livros/create','App\Http\Controllers\LivrosController@create')
+    ->name('livros.create');
+
+Route::post('/livros/store','App\Http\Controllers\LivrosController@store')
+    ->name('livros.store');
+
+
+//Route Generos
+
+Route::get('/generos','App\Http\Controllers\GenerosController@index')
+    ->name('generos.index');
+
 Route::get('/generos/{idg}/show','App\Http\Controllers\GenerosController@show')
     ->name('generos.show');
+
+
+//Route Editoras
+
+Route::get('/editoras','App\Http\Controllers\EditorasController@index')
+    ->name('editoras.index');
 
 Route::get('/editoras/{ide}/show','App\Http\Controllers\EditorasController@show')
     ->name('editoras.show');
 
+
+//Route Autores
+
+Route::get('/autores','App\Http\Controllers\AutoresController@index')
+    ->name('autores.index');
+
 Route::get('/autores/{ida}/show','App\Http\Controllers\AutoresController@show')
     ->name('autores.show');
+
+
+//Route Edições
 
 Route::get('/edicoes','App\Http\Controllers\EdicoesController@index')
     ->name('edicoes.index');
 
 Route::get('/edicoes/{}/show','App\Http\Controllers\EdicoesController@index')
     ->name('edicoes.show');
+
+
+//Route Formularios
 
 Route::get('/','App\Http\Controllers\PesquisaController@index')
     ->name('pesquisa.index');

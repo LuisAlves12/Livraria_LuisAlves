@@ -9,7 +9,19 @@ class Livro extends Model
 {
     use HasFactory;
     protected $primaryKey="id_livro";
-    protected $table="livros";     
+    protected $table="livros";   
+    protected $fillable=[
+        'titulo',
+        'idioma',
+        'total_paginas',
+        'data_edicao',
+        'isbn',
+        'observacoes',
+        'imagem_capa',
+        'id_genero',
+        'id_autor',
+        'sinopse'
+    ];
     public function genero(){
         return $this->belongsTo('App\Models\Genero','id_genero');
     }

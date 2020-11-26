@@ -2,6 +2,9 @@
 @section('titulo-pagina')
 Livraria
 @endsection
+@section('titulo-pagina')
+Resultado da Pesquisa: 
+@endsection
 @section('conteudo')
 @foreach($resultado as $res)
     <a href="{{route('livros.show', ['id'=>$res->id_livro])}}">
