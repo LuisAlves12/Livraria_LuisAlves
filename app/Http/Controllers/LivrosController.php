@@ -46,4 +46,29 @@ class LivrosController extends Controller
             'id'=>$livro->id_livro
         ]);
     }
+    public function edit(Request $request){
+        $id = $request->id;
+        $livro=Livro::where('id_livro',$id)->with(['genero','autores','editoras'])->first();
+        return view('livros.edit',['livro'=>$livro]);
+    }
+    public function update(Request $request){
+        $id = $request->id;
+        $livro=Livro::where('id_livro',$id)->with(['genero','autores','editoras'])->first();
+        $editLivro=$request->validate([
+            'titulo'=>['required','min:3','max:100'],
+            'idioma'=>['required','min:3','max:10'],
+            'total_paginas'=>['nullable','numeric','min:1'],
+            'data_edicao'=>['nullable','date'],
+            'isbn'=>['nullable','min:13','max:13'],
+            'observacoes'=>['nullable','min:3','max:255'],
+            'imagem_capa'=>['nullable','min:3','max:255'],
+            'id_genero'=>['nullable','numeric','min:1'],
+            'id_autor'=>['nullable','numeric','min:1'],
+            'sinopse'=>['nullable','min:3','max:255']
+        ]);
+        $editarlivro=$livro->update($editLivro);
+        return redirect()->route('livros.show',[
+            'id'=>$livro->id_livro
+        ]);
+    }
 }

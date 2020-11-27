@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 26-Nov-2020 às 10:04
+-- Generation Time: 27-Nov-2020 às 17:16
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -55,7 +55,7 @@ INSERT INTO `autores` (`id_autor`, `nome`, `nacionalidade`, `data_nascimento`, `
 (9, 'António Borges Regedor', 'Português', NULL, NULL, NULL, NULL, NULL),
 (10, 'José Dias Coelho', 'Português', NULL, NULL, NULL, NULL, NULL),
 (11, 'Paula Moura', 'Português', NULL, NULL, NULL, NULL, NULL),
-(12, 'Luis Cunha', 'Português', NULL, NULL, NULL, NULL, NULL),
+(12, 'Luis Alves', 'Português', NULL, 'Lindo', NULL, '2020-11-27 16:09:18', NULL),
 (13, 'Pereira Alfredo', 'Angolano', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -116,7 +116,7 @@ INSERT INTO `editoras` (`id_editora`, `nome`, `morada`, `observacoes`, `created_
 (5, 'Sílabo', '', NULL, NULL, NULL, NULL),
 (6, 'Green Lines Instituto', '', NULL, NULL, NULL, NULL),
 (7, 'Lambert Academic Publishing', '', NULL, NULL, NULL, NULL),
-(8, 'Kwigia editora', '', NULL, NULL, NULL, NULL);
+(8, 'Porto editora', 'Porto', 'Portugal', NULL, '2020-11-27 16:03:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -154,7 +154,7 @@ CREATE TABLE `generos` (
 
 INSERT INTO `generos` (`id_genero`, `designacao`, `observacoes`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'Memórias e Testemunhos', NULL, NULL, NULL, NULL),
-(2, 'Direito Civil ', NULL, NULL, NULL, NULL),
+(2, 'Direito Civil portugues', 'Portugal', NULL, '2020-11-27 15:58:53', NULL),
 (3, 'Culinária', NULL, NULL, NULL, NULL),
 (4, 'Romance', NULL, NULL, NULL, NULL),
 (5, 'Policial e Thriller', NULL, NULL, NULL, NULL);
@@ -201,7 +201,7 @@ INSERT INTO `livros` (`id_livro`, `titulo`, `idioma`, `total_paginas`, `data_edi
 (12, 'Repensar a Sociedade da Informação e do Conhecimento no Início do Século XXI', 'Português', NULL, NULL, '9789726186953', NULL, NULL, 3, 4, NULL, NULL, NULL, NULL),
 (13, 'Gestão da Informação em Museus: uma contribuição para o seu estudo', 'Português', NULL, NULL, '9789899901394', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL),
 (14, 'Web 2.0 and Higher Education. A psychological perspective', 'Inglês', NULL, NULL, '9783659683466', NULL, NULL, 1, 1, NULL, NULL, NULL, NULL),
-(15, 'Contribuições para a discussão de um modelo de Governo Eletrónico Local para Angola', 'Português', NULL, NULL, '9789899933200', NULL, NULL, 1, 13, NULL, NULL, NULL, NULL);
+(15, 'Uma aventura', 'Português', NULL, NULL, '9789899933200', NULL, NULL, 1, 13, NULL, NULL, '2020-11-27 15:45:48', NULL);
 
 --
 -- Indexes for dumped tables

@@ -38,4 +38,22 @@ class EditorasController extends Controller
             'ide'=>$editora->id_editora
         ]);
     }
+    public function edit(Request $request){
+        $ide = $request->ide;
+        $editora=Editora::where('id_editora',$ide)->with('livros')->first();
+        return view('editoras.edit',['editora'=>$editora]);
+    }
+    public function update(Request $request){
+        $ide = $request->ide;
+        $editora=Editora::where('id_editora',$ide)->with('livros')->first();
+        $editEditora=$request->validate([
+            'nome'=>['required','min:3','max:100'],
+            'morada'=>['nullable','min:3','max:255'],
+            'observacoes'=>['nullable','min:3','max:255']
+        ]);
+        $editarEditora=$editora->update($editEditora);
+        return redirect()->route('editoras.show',[
+            'ide'=>$editora->id_editora
+        ]);
+    }
 }

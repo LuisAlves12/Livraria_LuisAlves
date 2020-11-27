@@ -34,7 +34,6 @@
       <a class="nav-item nav-link" href="{{route('editoras.index')}}">Editoras</a>
       <a class="nav-item nav-link" href="{{route('autores.index')}}">Autores</a>
     </div>
-  </div>
 </nav>
 </body>
 </html>
