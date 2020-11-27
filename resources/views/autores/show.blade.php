@@ -18,12 +18,12 @@ Nome: {{$autores->nome}}<br>
             Neste autor ainda não tem livros!
         </div>
     @endif
-Nacionalidade: {{$autores->nacionalidade}}<br>
+Nacionalidade: {{$autores->nacionalidade}} <i class="{{strtolower($autores->nacionalidade)}} flag"> </i><br>
 Data de Nascimento: {{$autores->data_nascimento}}<br>
 Fotografia: {{$autores->fotografia}}<br>
 Created_at: {{$autores->created_at}}<br>
 Updated_at: {{$autores->updated_at}}<br>
 Deleted_at: {{$autores->deleted_at}}
 </ul>
-<a href="{{route('autores.edit', ['ida'=>$autores->id_autor])}}" class="btn btn-info" role="button">Editar Autore</a>
+<a href="{{route('autores.edit', ['ida'=>$autores->id_autor])}}" class="btn btn-info" role="button">Editar Autores</a>
 @endsection

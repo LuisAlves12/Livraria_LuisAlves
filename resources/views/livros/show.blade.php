@@ -9,7 +9,7 @@ Livro:
 <ul>
 ID:{{$livro->id_livro}}<br>
 Titulo:{{$livro->titulo}}<br>
-Idioma:{{$livro->idioma}}<br>
+Idioma:{{$livro->idioma}} <i class="{{strtolower($livro->idioma)}} flag"> </i><br>
 ISBN:{{$livro->isbn}}<br>
 
 @if(!is_null($livro->data_edicao))
