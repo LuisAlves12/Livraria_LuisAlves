@@ -45,7 +45,11 @@ Imagem Capa: <input type="text" name="imagem_capa" value="{{$livro->imagem_capa}
 Deverá ter um Imagem Capa correto<br>
 @endif
 
-Género: <input type="text" name="id_genero" value="{{$livro->id_genero}}"><br>
+Genero: <select name="id_genero">
+    @foreach($genero as $generos)
+        <option value="{{$generos->id_genero}}" @if($generos->id_genero==$livro->id_genero)selected @endif>{{$generos->designacao}}</option>
+    @endforeach
+</select><br>
 @if($errors->has('id_genero'))
 Deverá ter um Género correto <br>
 @endif

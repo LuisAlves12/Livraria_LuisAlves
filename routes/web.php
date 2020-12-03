@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route Inicial
+
+Route::get('/', function () {
+    return view('index');})->name('index.index');
+
 //Routes Livros
 
 Route::get('/livros','App\Http\Controllers\LivrosController@index')

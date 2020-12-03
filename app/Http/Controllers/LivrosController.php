@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Livro;
+use App\Models\Genero;
 
 class LivrosController extends Controller
 {
@@ -25,7 +26,10 @@ class LivrosController extends Controller
         ]);
     }
     public function create(){
-        return view('livros.create');
+        $genero=Genero::all();
+        return view('livros.create',[
+            'genero'=>$genero
+        ]);
     }
     public function store(Request $request){
         //$novoLivro=$request->all();
@@ -48,8 +52,9 @@ class LivrosController extends Controller
     }
     public function edit(Request $request){
         $id = $request->id;
+        $genero=Genero::all();
         $livro=Livro::where('id_livro',$id)->with(['genero','autores','editoras'])->first();
-        return view('livros.edit',['livro'=>$livro]);
+        return view('livros.edit',['livro'=>$livro,'genero'=>$genero]);
     }
     public function update(Request $request){
         $id = $request->id;
@@ -62,7 +67,7 @@ class LivrosController extends Controller
             'isbn'=>['nullable','min:13','max:13'],
             'observacoes'=>['nullable','min:3','max:255'],
             'imagem_capa'=>['nullable','min:3','max:255'],
-            'id_genero'=>['nullable','numeric','min:1'],
+            'id_genero'=>['nullable','numeric'],
             'id_autor'=>['nullable','numeric','min:1'],
             'sinopse'=>['nullable','min:3','max:255']
         ]);
