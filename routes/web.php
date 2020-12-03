@@ -33,6 +33,12 @@ Route::get('/livros/{id}/edit','App\Http\Controllers\LivrosController@edit')
 Route::patch('/livros/{id}/update','App\Http\Controllers\LivrosController@update')
     ->name('livros.update');
 
+Route::get('/livros/{id}/deleted','App\Http\Controllers\LivrosController@deleted')
+    ->name('livros.deleted');
+
+Route::delete('/livros/{id}/destroy','App\Http\Controllers\LivrosController@destroy')
+    ->name('livros.destroy');
+
 //Route Generos
 
 Route::get('/generos','App\Http\Controllers\GenerosController@index')
@@ -52,6 +58,12 @@ Route::get('/generos/{idg}/edit','App\Http\Controllers\GenerosController@edit')
 
 Route::patch('/generos/{idg}/update','App\Http\Controllers\GenerosController@update')
     ->name('generos.update');
+
+Route::get('/generos/{idg}/deleted','App\Http\Controllers\GenerosController@deleted')
+    ->name('generos.delete');
+
+Route::delete('/generos/{idg}/destroy','App\Http\Controllers\GenerosController@destroy')
+    ->name('generos.destroy');
 
 
 //Route Editoras
@@ -74,6 +86,12 @@ Route::get('/editoras/{ide}/edit','App\Http\Controllers\EditorasController@edit'
 Route::patch('/editoras/{ide}/update','App\Http\Controllers\EditorasController@update')
     ->name('editoras.update');
 
+Route::get('/editoras/{ide}/deleted','App\Http\Controllers\EditorasController@deleted')
+    ->name('editoras.delete');
+
+Route::delete('/editoras/{ide}/destroy','App\Http\Controllers\EditorasController@destroy')
+    ->name('editoras.destroy');
+
 
 //Route Autores
 
@@ -95,6 +113,12 @@ Route::get('/autores/{ida}/edit','App\Http\Controllers\AutoresController@edit')
 Route::patch('/autores/{ida}/update','App\Http\Controllers\AutoresController@update')
     ->name('autores.update');
 
+Route::get('/autores/{ida}/deleted','App\Http\Controllers\AutoresController@deleted')
+    ->name('autores.delete');
+
+Route::delete('/autores/{ida}/destroy','App\Http\Controllers\AutoresController@destroy')
+    ->name('autores.destroy');
+
 
 //Route Edições
 
@@ -107,7 +131,7 @@ Route::get('/edicoes/{ided}/show','App\Http\Controllers\EdicoesController@index'
 
 //Route Formularios
 
-Route::get('/','App\Http\Controllers\PesquisaController@index')
+Route::get('/pesquisa','App\Http\Controllers\PesquisaController@index')
     ->name('pesquisa.index');
 
 Route::post('/form','App\Http\Controllers\PesquisaController@formenviado')

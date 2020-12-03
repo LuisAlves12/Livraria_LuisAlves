@@ -26,6 +26,9 @@
 <body>
     <h1 style="text-align:center; color: #ffffff;">@yield('Titulo')</h1>
     @yield('conteudo')
+    @if(session()->has('msg'))
+    <h3><div class="alert alert-danger" role="alert">{{session('msg')}}</div></h3>
+    @endif
     <nav class="navbar navbar-expand-lg navbar bg-dark">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="{{route('pesquisa.index')}}">Pagina Inicial</a>

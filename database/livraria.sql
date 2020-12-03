@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Nov-2020 às 17:16
+-- Generation Time: 27-Nov-2020 às 18:07
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -44,19 +44,19 @@ CREATE TABLE `autores` (
 --
 
 INSERT INTO `autores` (`id_autor`, `nome`, `nacionalidade`, `data_nascimento`, `fotografia`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Luis Borges Gouveia', 'Portugês', NULL, NULL, NULL, NULL, NULL),
-(2, 'João Ranito', 'Portugês', NULL, NULL, NULL, NULL, NULL),
-(3, 'Nuno Magalhães Ribeiro', 'Portugês', NULL, NULL, NULL, NULL, NULL),
-(4, 'Paulo Rurato', 'Português', NULL, NULL, NULL, NULL, NULL),
-(5, 'Sofia Gaio', 'Portugês', NULL, NULL, NULL, NULL, NULL),
-(6, 'Rui Moreira', 'Portugês', NULL, NULL, NULL, NULL, NULL),
-(7, 'Margarida Bairrão', 'Português', NULL, NULL, NULL, NULL, NULL),
-(8, 'Judite Gonçalves de Freitas', 'Português', NULL, NULL, NULL, NULL, NULL),
-(9, 'António Borges Regedor', 'Português', NULL, NULL, NULL, NULL, NULL),
-(10, 'José Dias Coelho', 'Português', NULL, NULL, NULL, NULL, NULL),
-(11, 'Paula Moura', 'Português', NULL, NULL, NULL, NULL, NULL),
-(12, 'Luis Alves', 'Português', NULL, 'Lindo', NULL, '2020-11-27 16:09:18', NULL),
-(13, 'Pereira Alfredo', 'Angolano', NULL, NULL, NULL, NULL, NULL);
+(1, 'Luis Borges Gouveia', 'Portugal', NULL, NULL, NULL, NULL, NULL),
+(2, 'João Ranito', 'Portugal', NULL, NULL, NULL, NULL, NULL),
+(3, 'Nuno Magalhães Ribeiro', 'Portugal', NULL, NULL, NULL, NULL, NULL),
+(4, 'Paulo Rurato', 'Portugal', NULL, NULL, NULL, NULL, NULL),
+(5, 'Sofia Gaio', 'Portugal', NULL, NULL, NULL, NULL, NULL),
+(6, 'Rui Moreira', 'Portugal', NULL, NULL, NULL, NULL, NULL),
+(7, 'Margarida Bairrão', 'Portugal', NULL, NULL, NULL, NULL, NULL),
+(8, 'Judite Gonçalves de Freitas', 'Portugal', NULL, NULL, NULL, NULL, NULL),
+(9, 'António Borges Regedor', 'Portugal', NULL, NULL, NULL, NULL, NULL),
+(10, 'José Dias Coelho', 'Portugal', NULL, NULL, NULL, NULL, NULL),
+(11, 'Paula Moura', 'Portugal', NULL, NULL, NULL, NULL, NULL),
+(12, 'Luis Alves', 'Portugal', NULL, 'Lindo', NULL, '2020-11-27 16:09:18', NULL),
+(13, 'Pereira Alfredo', 'Angola', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -187,21 +187,21 @@ CREATE TABLE `livros` (
 --
 
 INSERT INTO `livros` (`id_livro`, `titulo`, `idioma`, `total_paginas`, `data_edicao`, `isbn`, `observacoes`, `imagem_capa`, `id_genero`, `id_autor`, `sinopse`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'sistema de informação de apoio a gestão', 'Portugês', NULL, NULL, '9728589433', NULL, NULL, 1, 1, NULL, NULL, NULL, NULL),
-(2, 'cidades e regiões digitais:impacte na cidade e nas pessoas', 'Portugês', NULL, NULL, '9728830033', NULL, NULL, 2, 1, NULL, NULL, NULL, NULL),
-(3, 'Informatica e Competencias Tecnologicas para a Sociedade da Informação', 'Portugês', NULL, NULL, '9789728830304', NULL, NULL, 1, 3, NULL, NULL, NULL, NULL),
-(4, 'Readings in Information Society', 'Inglês', NULL, NULL, '9789727228997', NULL, NULL, 3, 5, NULL, NULL, NULL, NULL),
-(5, 'Sociedade da Informação: balanço e implicações ', 'Português', NULL, NULL, '9789728830182', NULL, NULL, 3, 7, NULL, NULL, NULL, NULL),
-(6, 'O Tribunal de Contas e as Autarquias Locais', 'Portugês', NULL, NULL, '9789899936614', NULL, NULL, 2, 7, NULL, NULL, NULL, NULL),
-(7, 'Informática e Competências Tecnológicas para a Sociedade da Informação 2ed', 'Português', NULL, NULL, '9789728830304', NULL, NULL, 2, 8, NULL, NULL, NULL, NULL),
-(8, 'Negócio Eletrónico - conceitos e perspetivas de desenvolvimento', 'Português', NULL, NULL, '9789899552258', NULL, NULL, 1, 8, NULL, NULL, NULL, NULL),
-(9, 'Gestão da Informação na Biblioteca Escolar', 'Português', NULL, NULL, '9789722314916', NULL, NULL, 1, 9, NULL, NULL, NULL, NULL),
-(10, 'A virtual environment to share knowledge', 'Inglês', NULL, NULL, '9781351729901', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL),
+(1, 'sistema de informação de apoio a gestão', 'Portugal', NULL, NULL, '9728589433', NULL, NULL, 1, 1, NULL, NULL, NULL, NULL),
+(2, 'cidades e regiões digitais:impacte na cidade e nas pessoas', 'Portugal', NULL, NULL, '9728830033', NULL, NULL, 2, 1, NULL, NULL, NULL, NULL),
+(3, 'Informatica e Competencias Tecnologicas para a Sociedade da Informação', 'Portugal', NULL, NULL, '9789728830304', NULL, NULL, 1, 3, NULL, NULL, NULL, NULL),
+(4, 'Readings in Information Society', 'Portugal', NULL, NULL, '9789727228997', NULL, NULL, 3, 5, NULL, NULL, NULL, NULL),
+(5, 'Sociedade da Informação: balanço e implicações ', 'Portugal', NULL, NULL, '9789728830182', NULL, NULL, 3, 7, NULL, NULL, NULL, NULL),
+(6, 'O Tribunal de Contas e as Autarquias Locais', 'Portugal', NULL, NULL, '9789899936614', NULL, NULL, 2, 7, NULL, NULL, NULL, NULL),
+(7, 'Informática e Competências Tecnológicas para a Sociedade da Informação 2ed', 'Portugal', NULL, '2019-10-15 00:00:00', '9789728830304', NULL, NULL, 2, 8, NULL, NULL, NULL, NULL),
+(8, 'Negócio Eletrónico - conceitos e perspetivas de desenvolvimento', 'Portugal', NULL, NULL, '9789899552258', NULL, NULL, 1, 8, NULL, NULL, NULL, NULL),
+(9, 'Gestão da Informação na Biblioteca Escolar', 'Portugal', NULL, NULL, '9789722314916', NULL, NULL, 1, 9, NULL, NULL, NULL, NULL),
+(10, 'A virtual environment to share knowledge', 'Portugal', NULL, NULL, '9781351729901', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL),
 (11, 'Ciência da Informação: contributos para o seu estudo', 'Português', NULL, NULL, '9789896430900', NULL, NULL, 1, 4, NULL, NULL, NULL, NULL),
-(12, 'Repensar a Sociedade da Informação e do Conhecimento no Início do Século XXI', 'Português', NULL, NULL, '9789726186953', NULL, NULL, 3, 4, NULL, NULL, NULL, NULL),
-(13, 'Gestão da Informação em Museus: uma contribuição para o seu estudo', 'Português', NULL, NULL, '9789899901394', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL),
-(14, 'Web 2.0 and Higher Education. A psychological perspective', 'Inglês', NULL, NULL, '9783659683466', NULL, NULL, 1, 1, NULL, NULL, NULL, NULL),
-(15, 'Uma aventura', 'Português', NULL, NULL, '9789899933200', NULL, NULL, 1, 13, NULL, NULL, '2020-11-27 15:45:48', NULL);
+(12, 'Repensar a Sociedade da Informação e do Conhecimento no Início do Século XXI', 'Portugal', NULL, NULL, '9789726186953', NULL, NULL, 3, 4, NULL, NULL, NULL, NULL),
+(13, 'Gestão da Informação em Museus: uma contribuição para o seu estudo', 'Portugal', NULL, NULL, '9789899901394', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL),
+(14, 'Web 2.0 and Higher Education. A psychological perspective', 'Portugal', NULL, NULL, '9783659683466', NULL, NULL, 1, 1, NULL, NULL, NULL, NULL),
+(15, 'Uma aventura', 'Portugal', NULL, NULL, '9789899933200', NULL, NULL, 1, 13, NULL, NULL, '2020-11-27 15:45:48', NULL);
 
 --
 -- Indexes for dumped tables

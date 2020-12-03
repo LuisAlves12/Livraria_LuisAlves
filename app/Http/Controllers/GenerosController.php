@@ -54,4 +54,25 @@ class GenerosController extends Controller
             'idg'=>$genero->id_genero
         ]);
     }
+    public function deleted(Request $r){
+        $idg = $r->idg;
+        $genero=Genero::where('id_genero',$idg)->first();
+        if(is_null($genero)){
+            return redirect()->route('generos.index')->with('msg','Não existe este genero');
+        }
+        else{
+            return view('generos.delete',['genero'=>$genero]);
+        }
+    }
+    public function destroy(Request $r){
+        $idg = $r->idg;
+        $genero=Genero::where('id_genero',$idg)->first();
+        if(is_null($genero)){
+            return redirect()->route('generos.index')->with('msg','Não existe este geenero');
+        }
+        else{
+            $eliminargenero=$genero->delete();
+            return redirect()->route('generos.index');
+        }
+    }
 }

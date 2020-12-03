@@ -71,4 +71,25 @@ class LivrosController extends Controller
             'id'=>$livro->id_livro
         ]);
     }
+    public function deleted(Request $r){
+        $id = $r->id;
+        $livro=Livro::where('id_livro',$id)->first();
+        if(is_null($livro)){
+            return redirect()->route('livros.index')->with('msg','Não existe este livro');
+        }
+        else{
+            return view('livros.delete',['livro'=>$livro]);
+        }
+    }
+    public function destroy(Request $r){
+        $id = $r->id;
+        $livro=Livro::where('id_livro',$id)->first();
+        if(is_null($livro)){
+            return redirect()->route('livros.index')->with('msg','Não existe este livro');
+        }
+        else{
+            $eliminarlivro=$livro->delete();
+            return redirect()->route('livros.index');
+        }
+    }
 }
