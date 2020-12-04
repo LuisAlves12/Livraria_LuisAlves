@@ -22,7 +22,7 @@ Imagem Capa:{{$livro->imagem_capa}}<br>
 
 @if(count($livro->editoras)>0)
         @foreach($livro->editoras as $editora)
-        Data Edição:{{$editora->nome}}<br>
+        Nome Editora:{{$editora->nome}}<br>
         @endforeach
     @else
         <diV class="alert alert-danger" role="alert">

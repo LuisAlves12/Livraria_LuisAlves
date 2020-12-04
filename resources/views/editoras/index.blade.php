@@ -51,11 +51,10 @@ $(document).ready(function(){
 <div class="wrapper">
 <div class="carousel">
   <div><img src="{{asset('imagens/Livraria-Lello-1.jpg')}}"></div>
-  <div><img src="http://lorempixel.com/200/200/fashion/"></div>
-  <div><img src="http://lorempixel.com/200/200/sports/"></div>
-  <div><img src="http://lorempixel.com/200/200/animal/"></div>
-  <div><img src="http://lorempixel.com/200/200/abstract/"></div>
-  <div><img src="http://lorempixel.com/200/200/people/"></div>
+  <div><img src="{{asset('imagens/umaaventura.jpg')}}"></div>
+  <div><img src="{{asset('imagens/umaaventura1.jpg')}}"></div>
+  <div><img src="{{asset('imagens/umaaventura2.jpg')}}"></div>
+  <div><img src="{{asset('imagens/umaaventura5.jpg')}}"></div>
 </div>
 </div>
 @endsection

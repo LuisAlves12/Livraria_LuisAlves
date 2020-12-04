@@ -54,9 +54,22 @@ Genero: <select name="id_genero">
 Deverá ter um Género correto <br>
 @endif
 
-Autor: <input type="text" name="id_autor" value="{{$livro->id_autor}}"><br>
+Autor(es): <select name="id_autor[]" multiple="multiple">
+    @foreach($autores as $autor)
+        <option value="{{$autor->id_autor}}" @if(in_array($autor->id_autor, $autoresLivro))selected @endif>{{$autor->nome}}</option><br>
+    @endforeach
+</select><br>
 @if($errors->has('id_autor'))
 Deverá ter um Autor correto <br>
+@endif
+
+Nome Editora: <select name="id_editora[]" multiple="multiple">
+        @foreach($editoras as $editora)
+            <option value="{{$editora->id_editora}}"  @if(in_array($editora->id_editora, $editorasLivro))selected @endif>{{$editora->nome}}</option>
+        @endforeach
+    </select><br>
+    @if($errors->has('id_editora'))
+Deverá ter o Nome da Editora correta correto<br>
 @endif
 
 Sinopse: <textarea name="sinopse">{{$livro->sinopse}}</textarea><br><br>
