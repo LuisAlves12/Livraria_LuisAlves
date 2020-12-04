@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Nov-2020 às 18:07
+-- Generation Time: 04-Dez-2020 às 18:05
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -72,6 +72,34 @@ CREATE TABLE `autores_livros` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `autores_livros`
+--
+
+INSERT INTO `autores_livros` (`id_al`, `id_autor`, `id_livro`, `updated_at`, `created_at`) VALUES
+(6, 13, 16, '2020-12-04 15:10:27', '2020-12-04 15:10:27'),
+(8, 1, 1, '2020-12-04 15:17:15', '2020-12-04 15:17:15'),
+(9, 4, 10, '2020-12-04 15:27:33', '2020-12-04 15:27:33'),
+(10, 12, 2, '2020-12-04 15:52:00', '2020-12-04 15:52:00'),
+(11, 13, 2, '2020-12-04 15:52:00', '2020-12-04 15:52:00'),
+(12, 2, 3, '2020-12-04 15:52:24', '2020-12-04 15:52:24'),
+(13, 2, 4, '2020-12-04 15:52:37', '2020-12-04 15:52:37'),
+(14, 3, 4, '2020-12-04 15:52:37', '2020-12-04 15:52:37'),
+(15, 2, 5, '2020-12-04 15:52:46', '2020-12-04 15:52:46'),
+(16, 3, 5, '2020-12-04 15:52:46', '2020-12-04 15:52:46'),
+(17, 4, 5, '2020-12-04 15:52:46', '2020-12-04 15:52:46'),
+(18, 1, 7, '2020-12-04 15:53:01', '2020-12-04 15:53:01'),
+(19, 1, 8, '2020-12-04 15:53:13', '2020-12-04 15:53:13'),
+(20, 2, 8, '2020-12-04 15:53:13', '2020-12-04 15:53:13'),
+(21, 3, 8, '2020-12-04 15:53:13', '2020-12-04 15:53:13'),
+(22, 4, 8, '2020-12-04 15:53:13', '2020-12-04 15:53:13'),
+(23, 1, 9, '2020-12-04 15:53:22', '2020-12-04 15:53:22'),
+(24, 11, 11, '2020-12-04 15:53:38', '2020-12-04 15:53:38'),
+(25, 12, 11, '2020-12-04 15:53:38', '2020-12-04 15:53:38'),
+(26, 13, 11, '2020-12-04 15:53:38', '2020-12-04 15:53:38'),
+(27, 10, 12, '2020-12-04 15:53:48', '2020-12-04 15:53:48'),
+(28, 11, 12, '2020-12-04 15:53:48', '2020-12-04 15:53:48');
+
 -- --------------------------------------------------------
 
 --
@@ -127,11 +155,22 @@ INSERT INTO `editoras` (`id_editora`, `nome`, `morada`, `observacoes`, `created_
 CREATE TABLE `editoras_livros` (
   `id_editora` int(11) NOT NULL,
   `id_livro` int(11) NOT NULL,
-  `titulo` varchar(20) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `editoras_livros`
+--
+
+INSERT INTO `editoras_livros` (`id_editora`, `id_livro`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 2, NULL, NULL, NULL),
+(2, 1, NULL, NULL, NULL),
+(2, 12, '2020-12-04 16:43:52', '2020-12-04 16:43:52', NULL),
+(3, 12, '2020-12-04 16:43:52', '2020-12-04 16:43:52', NULL),
+(4, 12, '2020-12-04 16:43:52', '2020-12-04 16:43:52', NULL),
+(5, 12, '2020-12-04 16:43:52', '2020-12-04 16:43:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -187,21 +226,18 @@ CREATE TABLE `livros` (
 --
 
 INSERT INTO `livros` (`id_livro`, `titulo`, `idioma`, `total_paginas`, `data_edicao`, `isbn`, `observacoes`, `imagem_capa`, `id_genero`, `id_autor`, `sinopse`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'sistema de informação de apoio a gestão', 'Portugal', NULL, NULL, '9728589433', NULL, NULL, 1, 1, NULL, NULL, NULL, NULL),
-(2, 'cidades e regiões digitais:impacte na cidade e nas pessoas', 'Portugal', NULL, NULL, '9728830033', NULL, NULL, 2, 1, NULL, NULL, NULL, NULL),
+(1, 'sistema de informação de apoio a gestão', 'Portugal', NULL, NULL, '9728589433214', NULL, NULL, 1, 1, NULL, NULL, '2020-12-04 15:17:15', NULL),
+(2, 'cidades e regiões digitais:impacte na cidade e nas pessoas', 'Portugal', NULL, NULL, '1234567890123', NULL, NULL, 2, 1, NULL, NULL, '2020-12-04 15:51:50', NULL),
 (3, 'Informatica e Competencias Tecnologicas para a Sociedade da Informação', 'Portugal', NULL, NULL, '9789728830304', NULL, NULL, 1, 3, NULL, NULL, NULL, NULL),
 (4, 'Readings in Information Society', 'Portugal', NULL, NULL, '9789727228997', NULL, NULL, 3, 5, NULL, NULL, NULL, NULL),
-(5, 'Sociedade da Informação: balanço e implicações ', 'Portugal', NULL, NULL, '9789728830182', NULL, NULL, 3, 7, NULL, NULL, NULL, NULL),
+(5, 'Sociedade da Informação: balanço e implicações', 'Portugal', NULL, NULL, '9789728830182', NULL, NULL, 3, 7, NULL, NULL, '2020-12-04 15:52:46', NULL),
 (6, 'O Tribunal de Contas e as Autarquias Locais', 'Portugal', NULL, NULL, '9789899936614', NULL, NULL, 2, 7, NULL, NULL, NULL, NULL),
 (7, 'Informática e Competências Tecnológicas para a Sociedade da Informação 2ed', 'Portugal', NULL, '2019-10-15 00:00:00', '9789728830304', NULL, NULL, 2, 8, NULL, NULL, NULL, NULL),
 (8, 'Negócio Eletrónico - conceitos e perspetivas de desenvolvimento', 'Portugal', NULL, NULL, '9789899552258', NULL, NULL, 1, 8, NULL, NULL, NULL, NULL),
 (9, 'Gestão da Informação na Biblioteca Escolar', 'Portugal', NULL, NULL, '9789722314916', NULL, NULL, 1, 9, NULL, NULL, NULL, NULL),
 (10, 'A virtual environment to share knowledge', 'Portugal', NULL, NULL, '9781351729901', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL),
 (11, 'Ciência da Informação: contributos para o seu estudo', 'Português', NULL, NULL, '9789896430900', NULL, NULL, 1, 4, NULL, NULL, NULL, NULL),
-(12, 'Repensar a Sociedade da Informação e do Conhecimento no Início do Século XXI', 'Portugal', NULL, NULL, '9789726186953', NULL, NULL, 3, 4, NULL, NULL, NULL, NULL),
-(13, 'Gestão da Informação em Museus: uma contribuição para o seu estudo', 'Portugal', NULL, NULL, '9789899901394', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL),
-(14, 'Web 2.0 and Higher Education. A psychological perspective', 'Portugal', NULL, NULL, '9783659683466', NULL, NULL, 1, 1, NULL, NULL, NULL, NULL),
-(15, 'Uma aventura', 'Portugal', NULL, NULL, '9789899933200', NULL, NULL, 1, 13, NULL, NULL, '2020-11-27 15:45:48', NULL);
+(12, 'Repensar a Sociedade da Informação e do Conhecimento no Início do Século XXI', 'Portugal', NULL, NULL, '9789726186953', NULL, NULL, 3, 4, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -257,7 +293,7 @@ ALTER TABLE `autores`
 -- AUTO_INCREMENT for table `autores_livros`
 --
 ALTER TABLE `autores_livros`
-  MODIFY `id_al` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_al` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `editoras`
@@ -275,7 +311,7 @@ ALTER TABLE `generos`
 -- AUTO_INCREMENT for table `livros`
 --
 ALTER TABLE `livros`
-  MODIFY `id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
