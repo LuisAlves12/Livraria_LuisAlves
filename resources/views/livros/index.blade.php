@@ -16,7 +16,9 @@ Livros
 </li>
 @endforeach
 </ul>
+@if(auth()->check())
 <a href="{{route('livros.create')}}" class="btn btn-info" role="button">Adiciona Livros</a>
+@endif
 <style>
 .wrapper{
   width:100%;

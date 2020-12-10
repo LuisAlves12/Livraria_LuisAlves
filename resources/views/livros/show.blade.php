@@ -48,11 +48,14 @@ Imagem Capa:{{$livro->imagem_capa}}<br>
         </div>
     @endif
 
+
 Sinopse:{{$livro->sinopse}}<br>
 Created_at:{{$livro->created_at}}<br>
 Updated_at:{{$livro->updated_at}}<br>
 Deleted_at:{{$livro->deleted_at}}
 </ul>
+@if(auth()->check())
 <a href="{{route('livros.edit',['id'=>$livro->id_livro])}}" class="btn btn-info" role="button">Editar Livro</a>
 <a href="{{route('livros.deleted',['id'=>$livro->id_livro])}}" class="btn btn-info" role="button">Eliminar Livro</a>
+@endif
 @endsection

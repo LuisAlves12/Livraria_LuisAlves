@@ -15,7 +15,9 @@ Generos
 </a></li>
 @endforeach
 </ul>
+@if(auth()->check())
 <a href="{{route('generos.create')}}" class="btn btn-info" role="button">Adiciona Generos</a>
+@endif
 <style>
 .wrapper{
   width:100%;

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Models\Livro;
 use App\Models\Genero;
 use App\Models\Autor;
 use App\Models\Editora;
+
 
 class LivrosController extends Controller
 {
@@ -50,6 +52,13 @@ class LivrosController extends Controller
             'id_genero'=>['nullable','numeric','min:1'],
             'sinopse'=>['nullable','min:3','max:255']
         ]);
+        if(Auth::check()){
+            $userAtual=Auth::user()->id;
+            $novoLivro['id_user']=$userAtual;
+        }
+        else{
+            return redirect()->route('livros.index')->with('msg','Não está logado');
+        }
         $autores=$request->id_autor;
         $editora=$request->id_editora;
         $livro=Livro::create($novoLivro);

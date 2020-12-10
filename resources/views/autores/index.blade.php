@@ -15,7 +15,9 @@ Autores
 </a></li>
 @endforeach
 </ul>
+@if(auth()->check())
 <a href="{{route('autores.create')}}" class="btn btn-info" role="button">Adiciona Autores</a>
+@endif
 <style>
 .wrapper{
   width:100%;

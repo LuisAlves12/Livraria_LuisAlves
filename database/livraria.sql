@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Dez-2020 às 18:05
+-- Generation Time: 10-Dez-2020 às 16:08
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -218,26 +218,51 @@ CREATE TABLE `livros` (
   `sinopse` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `livros`
 --
 
-INSERT INTO `livros` (`id_livro`, `titulo`, `idioma`, `total_paginas`, `data_edicao`, `isbn`, `observacoes`, `imagem_capa`, `id_genero`, `id_autor`, `sinopse`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'sistema de informação de apoio a gestão', 'Portugal', NULL, NULL, '9728589433214', NULL, NULL, 1, 1, NULL, NULL, '2020-12-04 15:17:15', NULL),
-(2, 'cidades e regiões digitais:impacte na cidade e nas pessoas', 'Portugal', NULL, NULL, '1234567890123', NULL, NULL, 2, 1, NULL, NULL, '2020-12-04 15:51:50', NULL),
-(3, 'Informatica e Competencias Tecnologicas para a Sociedade da Informação', 'Portugal', NULL, NULL, '9789728830304', NULL, NULL, 1, 3, NULL, NULL, NULL, NULL),
-(4, 'Readings in Information Society', 'Portugal', NULL, NULL, '9789727228997', NULL, NULL, 3, 5, NULL, NULL, NULL, NULL),
-(5, 'Sociedade da Informação: balanço e implicações', 'Portugal', NULL, NULL, '9789728830182', NULL, NULL, 3, 7, NULL, NULL, '2020-12-04 15:52:46', NULL),
-(6, 'O Tribunal de Contas e as Autarquias Locais', 'Portugal', NULL, NULL, '9789899936614', NULL, NULL, 2, 7, NULL, NULL, NULL, NULL),
-(7, 'Informática e Competências Tecnológicas para a Sociedade da Informação 2ed', 'Portugal', NULL, '2019-10-15 00:00:00', '9789728830304', NULL, NULL, 2, 8, NULL, NULL, NULL, NULL),
-(8, 'Negócio Eletrónico - conceitos e perspetivas de desenvolvimento', 'Portugal', NULL, NULL, '9789899552258', NULL, NULL, 1, 8, NULL, NULL, NULL, NULL),
-(9, 'Gestão da Informação na Biblioteca Escolar', 'Portugal', NULL, NULL, '9789722314916', NULL, NULL, 1, 9, NULL, NULL, NULL, NULL),
-(10, 'A virtual environment to share knowledge', 'Portugal', NULL, NULL, '9781351729901', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL),
-(11, 'Ciência da Informação: contributos para o seu estudo', 'Português', NULL, NULL, '9789896430900', NULL, NULL, 1, 4, NULL, NULL, NULL, NULL),
-(12, 'Repensar a Sociedade da Informação e do Conhecimento no Início do Século XXI', 'Portugal', NULL, NULL, '9789726186953', NULL, NULL, 3, 4, NULL, NULL, NULL, NULL);
+INSERT INTO `livros` (`id_livro`, `titulo`, `idioma`, `total_paginas`, `data_edicao`, `isbn`, `observacoes`, `imagem_capa`, `id_genero`, `id_autor`, `sinopse`, `created_at`, `updated_at`, `deleted_at`, `id_user`) VALUES
+(1, 'sistema de informação de apoio a gestão', 'Portugal', NULL, NULL, '9728589433214', NULL, NULL, 1, 1, NULL, NULL, '2020-12-04 15:17:15', NULL, 0),
+(2, 'cidades e regiões digitais:impacte na cidade e nas pessoas', 'Portugal', NULL, NULL, '1234567890123', NULL, NULL, 2, 1, NULL, NULL, '2020-12-04 15:51:50', NULL, 0),
+(3, 'Informatica e Competencias Tecnologicas para a Sociedade da Informação', 'Portugal', NULL, NULL, '9789728830304', NULL, NULL, 1, 3, NULL, NULL, NULL, NULL, 0),
+(4, 'Readings in Information Society', 'Portugal', NULL, NULL, '9789727228997', NULL, NULL, 3, 5, NULL, NULL, NULL, NULL, 0),
+(5, 'Sociedade da Informação: balanço e implicações', 'Portugal', NULL, NULL, '9789728830182', NULL, NULL, 3, 7, NULL, NULL, '2020-12-04 15:52:46', NULL, 0),
+(6, 'O Tribunal de Contas e as Autarquias Locais', 'Portugal', NULL, NULL, '9789899936614', NULL, NULL, 2, 7, NULL, NULL, NULL, NULL, 0),
+(7, 'Informática e Competências Tecnológicas para a Sociedade da Informação 2ed', 'Portugal', NULL, '2019-10-15 00:00:00', '9789728830304', NULL, NULL, 2, 8, NULL, NULL, NULL, NULL, 0),
+(8, 'Negócio Eletrónico - conceitos e perspetivas de desenvolvimento', 'Portugal', NULL, NULL, '9789899552258', NULL, NULL, 1, 8, NULL, NULL, NULL, NULL, 0),
+(9, 'Gestão da Informação na Biblioteca Escolar', 'Portugal', NULL, NULL, '9789722314916', NULL, NULL, 1, 9, NULL, NULL, NULL, NULL, 0),
+(10, 'A virtual environment to share knowledge', 'Portugal', NULL, NULL, '9781351729901', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL, 0),
+(11, 'Ciência da Informação: contributos para o seu estudo', 'Português', NULL, NULL, '9789896430900', NULL, NULL, 1, 4, NULL, NULL, NULL, NULL, 0),
+(12, 'Repensar a Sociedade da Informação e do Conhecimento no Início do Século XXI', 'Portugal', NULL, NULL, '9789726186953', NULL, NULL, 3, 4, NULL, NULL, NULL, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Luis Alves', 'a15016@aedah.pt', NULL, '$2y$10$utdJfUMKfO4jeaQw3jsM4elbd3Gm77Y9MNSijfQ4muYR5Z.4T2c/G', NULL, '2020-12-10 13:55:57', '2020-12-10 13:55:57');
 
 --
 -- Indexes for dumped tables
@@ -280,6 +305,12 @@ ALTER TABLE `livros`
   ADD PRIMARY KEY (`id_livro`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -312,6 +343,12 @@ ALTER TABLE `generos`
 --
 ALTER TABLE `livros`
   MODIFY `id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

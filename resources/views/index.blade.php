@@ -50,5 +50,4 @@ $('body').vegas({
 
 <script src="https://raw.githubusercontent.com/jaysalvat/vegas/master/dist/vegas.min.js"></script>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br>
 @endsection
