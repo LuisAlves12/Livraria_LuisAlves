@@ -6,6 +6,7 @@ Livraria
 Livros
 @endsection
 @section('conteudo')
+@if(auth()->user()->name == $livro->users->name)
 <form action="{{route('livros.update',['id'=>$livro->id_livro])}}" method="post">
     @method('patch')
     @csrf
@@ -79,4 +80,9 @@ Deverá ter um Sinopse correto<br>
 
 <input type="submit" value="enviar">
 </form>
+@else
+<div class="alert alert-danger" role="alert">
+        Sem permissão para tal
+        </div>
+@endif
 @endsection

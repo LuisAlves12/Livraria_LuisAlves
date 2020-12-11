@@ -43,7 +43,7 @@ Imagem Capa:{{$livro->imagem_capa}}<br>
             Autor:{{$autor->nome}}<br>
         @endforeach
     @else
-        <diV class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" role="alert">
         Sem o nome do autor definido
         </div>
     @endif
@@ -51,7 +51,7 @@ Imagem Capa:{{$livro->imagem_capa}}<br>
     @if(isset ($livro->users->name))
     Nome do Utilizador:{{$livro->users->name}}<br>
     @else
-        <diV class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" role="alert">
         Sem utilizador definido
         </div>
     @endif
