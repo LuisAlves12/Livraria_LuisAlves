@@ -9,6 +9,7 @@ use App\Models\Genero;
 use App\Models\Autor;
 use App\Models\Editora;
 use App\Models\User;
+use App\Models\Like;
 
 
 class LivrosController extends Controller
@@ -179,5 +180,8 @@ class LivrosController extends Controller
             return redirect()->route('livros.index');
         }
 
+    }
+    public function likes(){
+        
     }
 }
