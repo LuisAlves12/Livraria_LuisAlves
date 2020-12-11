@@ -8,6 +8,7 @@ use App\Models\Livro;
 use App\Models\Genero;
 use App\Models\Autor;
 use App\Models\Editora;
+use App\Models\User;
 
 
 class LivrosController extends Controller
@@ -24,7 +25,7 @@ class LivrosController extends Controller
         $idLivro = $request->id;
         //$livro=Livro::findOrFail($idLivro);
         //$livro=Livro::find($idLivro);
-        $livro=Livro::where('id_livro',$idLivro)->with(['genero','autores','editoras'])->first();
+        $livro=Livro::where('id_livro',$idLivro)->with(['genero','autores','editoras','users'])->first();
         return view('livros.show',[
             'livro'=>$livro
         ]);
@@ -73,7 +74,7 @@ class LivrosController extends Controller
         $autores=Autor::all();
         $genero=Genero::all();
         $editoras=Editora::all();
-        $livro=Livro::where('id_livro',$id)->with(['genero','autores','editoras'])->first();
+        $livro=Livro::where('id_livro',$id)->with(['genero','autores','editoras','users'])->first();
         $autoresLivro=[];
         foreach($livro->autores as $autor){
             $autoresLivro[]=$autor->id_autor;
@@ -82,18 +83,37 @@ class LivrosController extends Controller
         foreach($livro->editoras as $editora){
             $editorasLivro[]=$editora->id_editora;
         }
-        return view('livros.edit',[
-            'livro'=>$livro,
-            'genero'=>$genero,
-            'autores'=>$autores,
-            'editoras'=>$editoras,
-            'autoresLivro'=>$autoresLivro,
-            'editorasLivro'=>$editorasLivro
-        ]);
+        if(isset($livro->users->id_user)){
+            if(Auth::user()->id == $livro->users->id_user){
+                return view('livros.edit',[
+                    'livro'=>$livro,
+                    'genero'=>$genero,
+                    'autores'=>$autores,
+                    'editoras'=>$editoras,
+                    'autoresLivro'=>$autoresLivro,
+                    'editorasLivro'=>$editorasLivro
+                ]);
+            }
+            else{
+                return redirect()->route('livros.show',[
+                'id'=>$id]);
+            }
+        }
+        else{
+            return view('livros.edit',[
+                'livro'=>$livro,
+                'genero'=>$genero,
+                'autores'=>$autores,
+                'editoras'=>$editoras,
+                'autoresLivro'=>$autoresLivro,
+                'editorasLivro'=>$editorasLivro
+            ]);
+        }
+        
     }
     public function update(Request $request){
         $id = $request->id;
-        $livro=Livro::where('id_livro',$id)->with(['genero','autores','editoras'])->first();
+        $livro=Livro::where('id_livro',$id)->with(['genero','autores','editoras','users'])->first();
         $editLivro=$request->validate([
             'titulo'=>['required','min:3','max:100'],
             'idioma'=>['required','min:3','max:10'],
@@ -117,12 +137,29 @@ class LivrosController extends Controller
     public function deleted(Request $r){
         $id = $r->id;
         $livro=Livro::where('id_livro',$id)->first();
-        if(is_null($livro)){
-            return redirect()->route('livros.index')->with('msg','Não existe este livro');
+        if(isset($livro->users->id_user)){
+            if(Auth::user()->id == $livro->users->id_user){
+                if(is_null($livro)){
+                    return redirect()->route('livros.index')->with('msg','Não existe este livro');
+                }
+                else{
+                    return view('livros.delete',['livro'=>$livro]);
+                }
+            }
+            else{
+                return redirect()->route('livros.show',[
+                    'id'=>$id]);
+            }
         }
         else{
-            return view('livros.delete',['livro'=>$livro]);
+            if(is_null($livro)){
+                return redirect()->route('livros.index')->with('msg','Não existe este livro');
+            }
+            else{
+                return view('livros.delete',['livro'=>$livro]);
+            }
         }
+        
     }
     public function destroy(Request $request){
         $livro= Livro::where('id_livro', $request->id)->first();
