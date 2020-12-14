@@ -9,6 +9,6 @@ class AutorLivro extends Model
 {
     use HasFactory;
     protected $primaryKey="id_al";
-    protected $tabel="autores_livros";
+    protected $table="autores_livros";
     
 }

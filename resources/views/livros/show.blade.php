@@ -60,7 +60,22 @@ Imagem Capa:{{$livro->imagem_capa}}<br>
 Sinopse:{{$livro->sinopse}}<br>
 Created_at:{{$livro->created_at}}<br>
 Updated_at:{{$livro->updated_at}}<br>
-Deleted_at:{{$livro->deleted_at}}
+Deleted_at:{{$livro->deleted_at}}<br><br>
+
+Numero de Likes: {{$likes}}
+@if($utilizador!=null)
+<i class="fas fa-thumbs-up" style=" color:red"></i>
+@else
+<a href="{{route('livros.likes',['id'=>$livro->id_livro])}}">
+<i class="fas fa-thumbs-up"></i>
+</a>
+@endif
+
+Comentario:
+<form action="">
+<textarea name="comentario"></textarea>
+</form>
+
 </ul>
 @if(isset($livro->users->name))
     @if(auth()->user()->name == $livro->users->name)

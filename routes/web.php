@@ -44,6 +44,12 @@ Route::get('/livros/{id}/deleted','App\Http\Controllers\LivrosController@deleted
 Route::delete('/livros/{id}/destroy','App\Http\Controllers\LivrosController@destroy')
     ->name('livros.destroy')->middleware('auth');
 
+Route::get('/livros/{id}/likes','App\Http\Controllers\LivrosController@likes')
+    ->name('livros.likes');
+
+Route::post('/livros/{id}/comentario','App\Http\Controllers\LivrosController@comentario')
+    ->name('livros.comentario');
+
 //Route Generos
 
 Route::get('/generos','App\Http\Controllers\GenerosController@index')

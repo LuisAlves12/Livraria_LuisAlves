@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Dez-2020 às 16:08
+-- Generation Time: 14-Dez-2020 às 18:11
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -99,6 +99,20 @@ INSERT INTO `autores_livros` (`id_al`, `id_autor`, `id_livro`, `updated_at`, `cr
 (26, 13, 11, '2020-12-04 15:53:38', '2020-12-04 15:53:38'),
 (27, 10, 12, '2020-12-04 15:53:48', '2020-12-04 15:53:48'),
 (28, 11, 12, '2020-12-04 15:53:48', '2020-12-04 15:53:48');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id_comentario` int(11) NOT NULL,
+  `id_livro` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `comentario` text CHARACTER SET utf8 NOT NULL,
+  `aprovado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -201,6 +215,26 @@ INSERT INTO `generos` (`id_genero`, `designacao`, `observacoes`, `created_at`, `
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `likes`
+--
+
+CREATE TABLE `likes` (
+  `id_livro` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_like` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `likes`
+--
+
+INSERT INTO `likes` (`id_livro`, `id_user`, `id_like`) VALUES
+(1, 1, 2),
+(1, 2, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `livros`
 --
 
@@ -262,7 +296,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Luis Alves', 'a15016@aedah.pt', NULL, '$2y$10$utdJfUMKfO4jeaQw3jsM4elbd3Gm77Y9MNSijfQ4muYR5Z.4T2c/G', NULL, '2020-12-10 13:55:57', '2020-12-10 13:55:57');
+(1, 'Luis Alves', 'a15016@aedah.pt', NULL, '$2y$10$utdJfUMKfO4jeaQw3jsM4elbd3Gm77Y9MNSijfQ4muYR5Z.4T2c/G', NULL, '2020-12-10 13:55:57', '2020-12-10 13:55:57'),
+(2, 'Luis Filipe', 'a1234@aedah.pt', NULL, '$2y$10$Bbo.s0hS3/zSmpyRR3GlM.dRnzAHBkWdmEaw8VFx.JOu4VzVyQ9l6', NULL, '2020-12-14 16:42:56', '2020-12-14 16:42:56');
 
 --
 -- Indexes for dumped tables
@@ -281,6 +316,13 @@ ALTER TABLE `autores_livros`
   ADD PRIMARY KEY (`id_al`);
 
 --
+-- Indexes for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `id_livro` (`id_livro`,`id_user`);
+
+--
 -- Indexes for table `edicoes`
 --
 ALTER TABLE `edicoes`
@@ -297,6 +339,13 @@ ALTER TABLE `editoras`
 --
 ALTER TABLE `generos`
   ADD PRIMARY KEY (`id_genero`);
+
+--
+-- Indexes for table `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`id_like`),
+  ADD KEY `id_livro` (`id_livro`,`id_user`);
 
 --
 -- Indexes for table `livros`
@@ -339,6 +388,12 @@ ALTER TABLE `generos`
   MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `livros`
 --
 ALTER TABLE `livros`
@@ -348,7 +403,7 @@ ALTER TABLE `livros`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

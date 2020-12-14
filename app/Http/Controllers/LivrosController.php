@@ -24,11 +24,19 @@ class LivrosController extends Controller
     }
     public function show(Request $request){
         $idLivro = $request->id;
+        $utilizador="";
         //$livro=Livro::findOrFail($idLivro);
         //$livro=Livro::find($idLivro);
+        $likes=Like::where('id_livro',$idLivro)->count();
         $livro=Livro::where('id_livro',$idLivro)->with(['genero','autores','editoras','users'])->first();
+        if(Auth::check()){
+            $idUtilizador= Auth::user()->id;
+            $utilizador=Like::where('id_user',$idUtilizador)->where('id_livro',$idLivro)->first();
+        }
         return view('livros.show',[
-            'livro'=>$livro
+            'livro'=>$livro,
+            'likes'=>$likes,
+            'utilizador'=>$utilizador
         ]);
     }
     public function create(){
@@ -181,7 +189,23 @@ class LivrosController extends Controller
         }
 
     }
-    public function likes(){
-        
+    public function likes(Request $request){
+        $id=$request->id;
+        if(Auth()->check()){
+            $idUtilizador= Auth::user()->id; 
+            $like=Like::where('id_user',$idUtilizador)->where('id_livro',$id)->first();
+            if($like==null){
+                $novoLike['id_livro']=$id;
+                $novoLike['id_user']=$idUtilizador;
+                $like=Like::create($novoLike);
+                return redirect()->route('livros.show',['id'=>$id]);
+            }
+            else{
+                return redirect()->route('livros.show',['id'=>$id])->with('mensagem','');
+            }
+        }
+        else{
+            return redirect()->route('livros.show',['id'=>$id])->with('msg','Não esta logado');
+        }
     }
 }
