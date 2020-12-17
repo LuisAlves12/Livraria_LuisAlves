@@ -70,7 +70,7 @@ Numero de Likes: {{$likes}}
 <i class="fas fa-thumbs-up"></i>
 </a>
 @endif
-
+<br><br>
 Comentario:
 <form action="">
 <textarea name="comentario"></textarea>

@@ -16,9 +16,9 @@ class Like extends Model
         'id_user'
     ];
     public function livros(){
-        return $this->hasMany('App\Models\Livro','id_livro');
+        return $this->belongTo('App\Models\Livro','id_livro');
     }
     public function users(){
-        return $this->hasMany('App\Models\User','id_user');
+        return $this->belongTo('App\Models\User','id_user');
     }
 }
