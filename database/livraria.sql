@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 14-Dez-2020 às 18:11
+-- Generation Time: 04-Jan-2021 às 17:59
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -261,18 +261,18 @@ CREATE TABLE `livros` (
 --
 
 INSERT INTO `livros` (`id_livro`, `titulo`, `idioma`, `total_paginas`, `data_edicao`, `isbn`, `observacoes`, `imagem_capa`, `id_genero`, `id_autor`, `sinopse`, `created_at`, `updated_at`, `deleted_at`, `id_user`) VALUES
-(1, 'sistema de informação de apoio a gestão', 'Portugal', NULL, NULL, '9728589433214', NULL, NULL, 1, 1, NULL, NULL, '2020-12-04 15:17:15', NULL, 0),
-(2, 'cidades e regiões digitais:impacte na cidade e nas pessoas', 'Portugal', NULL, NULL, '1234567890123', NULL, NULL, 2, 1, NULL, NULL, '2020-12-04 15:51:50', NULL, 0),
-(3, 'Informatica e Competencias Tecnologicas para a Sociedade da Informação', 'Portugal', NULL, NULL, '9789728830304', NULL, NULL, 1, 3, NULL, NULL, NULL, NULL, 0),
-(4, 'Readings in Information Society', 'Portugal', NULL, NULL, '9789727228997', NULL, NULL, 3, 5, NULL, NULL, NULL, NULL, 0),
-(5, 'Sociedade da Informação: balanço e implicações', 'Portugal', NULL, NULL, '9789728830182', NULL, NULL, 3, 7, NULL, NULL, '2020-12-04 15:52:46', NULL, 0),
-(6, 'O Tribunal de Contas e as Autarquias Locais', 'Portugal', NULL, NULL, '9789899936614', NULL, NULL, 2, 7, NULL, NULL, NULL, NULL, 0),
-(7, 'Informática e Competências Tecnológicas para a Sociedade da Informação 2ed', 'Portugal', NULL, '2019-10-15 00:00:00', '9789728830304', NULL, NULL, 2, 8, NULL, NULL, NULL, NULL, 0),
-(8, 'Negócio Eletrónico - conceitos e perspetivas de desenvolvimento', 'Portugal', NULL, NULL, '9789899552258', NULL, NULL, 1, 8, NULL, NULL, NULL, NULL, 0),
-(9, 'Gestão da Informação na Biblioteca Escolar', 'Portugal', NULL, NULL, '9789722314916', NULL, NULL, 1, 9, NULL, NULL, NULL, NULL, 0),
-(10, 'A virtual environment to share knowledge', 'Portugal', NULL, NULL, '9781351729901', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL, 0),
-(11, 'Ciência da Informação: contributos para o seu estudo', 'Português', NULL, NULL, '9789896430900', NULL, NULL, 1, 4, NULL, NULL, NULL, NULL, 0),
-(12, 'Repensar a Sociedade da Informação e do Conhecimento no Início do Século XXI', 'Portugal', NULL, NULL, '9789726186953', NULL, NULL, 3, 4, NULL, NULL, NULL, NULL, 0);
+(1, 'sistema de informação de apoio a gestão', 'Portugal', NULL, NULL, '9728589433214', NULL, NULL, 1, 1, NULL, NULL, '2020-12-04 15:17:15', NULL, 1),
+(2, 'cidades e regiões digitais:impacte na cidade e nas pessoas', 'Portugal', NULL, NULL, '1234567890123', NULL, NULL, 2, 1, NULL, NULL, '2020-12-04 15:51:50', NULL, 2),
+(3, 'Informatica e Competencias Tecnologicas para a Sociedade da Informação', 'Portugal', NULL, NULL, '9789728830304', NULL, NULL, 1, 3, NULL, NULL, NULL, NULL, 1),
+(4, 'Readings in Information Society', 'Portugal', NULL, NULL, '9789727228997', NULL, NULL, 3, 5, NULL, NULL, NULL, NULL, 2),
+(5, 'Sociedade da Informação: balanço e implicações', 'Portugal', NULL, NULL, '9789728830182', NULL, NULL, 3, 7, NULL, NULL, '2020-12-04 15:52:46', NULL, 2),
+(6, 'O Tribunal de Contas e as Autarquias Locais', 'Portugal', NULL, NULL, '9789899936614', NULL, NULL, 2, 7, NULL, NULL, NULL, NULL, 1),
+(7, 'Informática e Competências Tecnológicas para a Sociedade da Informação 2ed', 'Portugal', NULL, '2019-10-15 00:00:00', '9789728830304', NULL, NULL, 2, 8, NULL, NULL, NULL, NULL, 1),
+(8, 'Negócio Eletrónico - conceitos e perspetivas de desenvolvimento', 'Portugal', NULL, NULL, '9789899552258', NULL, NULL, 1, 8, NULL, NULL, NULL, NULL, 2),
+(9, 'Gestão da Informação na Biblioteca Escolar', 'Portugal', NULL, NULL, '9789722314916', NULL, NULL, 1, 9, NULL, NULL, NULL, NULL, 1),
+(10, 'A virtual environment to share knowledge', 'Portugal', NULL, NULL, '9781351729901', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL, 2),
+(11, 'Ciência da Informação: contributos para o seu estudo', 'Português', NULL, NULL, '9789896430900', NULL, NULL, 1, 4, NULL, NULL, NULL, NULL, 1),
+(12, 'Repensar a Sociedade da Informação e do Conhecimento no Início do Século XXI', 'Portugal', NULL, NULL, '9789726186953', NULL, NULL, 3, 4, NULL, NULL, NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -286,6 +286,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_user` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'normal' COMMENT 'admin ou normal',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -295,9 +296,9 @@ CREATE TABLE `users` (
 -- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Luis Alves', 'a15016@aedah.pt', NULL, '$2y$10$utdJfUMKfO4jeaQw3jsM4elbd3Gm77Y9MNSijfQ4muYR5Z.4T2c/G', NULL, '2020-12-10 13:55:57', '2020-12-10 13:55:57'),
-(2, 'Luis Filipe', 'a1234@aedah.pt', NULL, '$2y$10$Bbo.s0hS3/zSmpyRR3GlM.dRnzAHBkWdmEaw8VFx.JOu4VzVyQ9l6', NULL, '2020-12-14 16:42:56', '2020-12-14 16:42:56');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `tipo_user`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Luis Alves', 'a15016@aedah.pt', NULL, '$2y$10$utdJfUMKfO4jeaQw3jsM4elbd3Gm77Y9MNSijfQ4muYR5Z.4T2c/G', 'normal', NULL, '2020-12-10 13:55:57', '2020-12-10 13:55:57'),
+(2, 'Luis Filipe', 'a1234@aedah.pt', NULL, '$2y$10$Bbo.s0hS3/zSmpyRR3GlM.dRnzAHBkWdmEaw8VFx.JOu4VzVyQ9l6', 'admin', NULL, '2020-12-14 16:42:56', '2020-12-14 16:42:56');
 
 --
 -- Indexes for dumped tables

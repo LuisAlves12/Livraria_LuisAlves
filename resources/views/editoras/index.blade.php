@@ -15,7 +15,7 @@ Editoras
 </a></li>
 @endforeach
 </ul>
-@if(auth()->check())
+@if(Gate::allows('admin'))
 <a href="{{route('editoras.create')}}" class="btn btn-info" role="button">Adiciona Editoras</a>
 @endif
 <style>

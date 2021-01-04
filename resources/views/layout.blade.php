@@ -42,6 +42,11 @@
       <a class="nav-item nav-link" href="{{route('generos.index')}}">Generos</a>
       <a class="nav-item nav-link" href="{{route('editoras.index')}}">Editoras</a>
       <a class="nav-item nav-link" href="{{route('autores.index')}}">Autores</a>
+
+      @if(Gate::allows('admin'))
+        <a class="nav-item nav-link" href="{{route('users.index')}}">Users</a>
+      @endif
+
       <a class="nav-item nav-link" href="{{route('home')}}">Home</a>
       @guest
       @if (Route::has('login'))

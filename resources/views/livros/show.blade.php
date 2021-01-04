@@ -77,13 +77,8 @@ Comentario:
 </form>
 
 </ul>
-@if(isset($livro->users->name))
-    @if(auth()->user()->name == $livro->users->name)
-        <a href="{{route('livros.edit',['id'=>$livro->id_livro])}}" class="btn btn-info" role="button">Editar Livro</a>
-        <a href="{{route('livros.deleted',['id'=>$livro->id_livro])}}" class="btn btn-info" role="button">Eliminar Livro</a>
-    @endif
-@else
-        <a href="{{route('livros.edit',['id'=>$livro->id_livro])}}" class="btn btn-info" role="button">Editar Livro</a>
-        <a href="{{route('livros.deleted',['id'=>$livro->id_livro])}}" class="btn btn-info" role="button">Eliminar Livro</a>
+@if(Gate::allows('atualizar-livro',$livro)||Gate::allows('admin'))
+    <a href="{{route('livros.edit',['id'=>$livro->id_livro])}}" class="btn btn-info" role="button">Editar Livro</a>
+    <a href="{{route('livros.deleted',['id'=>$livro->id_livro])}}" class="btn btn-info" role="button">Eliminar Livro</a>
 @endif
 @endsection

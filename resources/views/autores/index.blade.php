@@ -15,7 +15,7 @@ Autores
 </a></li>
 @endforeach
 </ul>
-@if(auth()->check())
+@if(Gate::allows('admin'))
 <a href="{{route('autores.create')}}" class="btn btn-info" role="button">Adiciona Autores</a>
 @endif
 <style>

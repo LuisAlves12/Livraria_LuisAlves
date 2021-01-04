@@ -41,7 +41,7 @@ class LivrosController extends Controller
         ]);
     }
     public function create(){
-        if(Gate::allows('admin')){
+        if(Auth::check()){
             $autores=Autor::all();
             $genero=Genero::all();
             $editoras=Editora::all();
@@ -69,7 +69,7 @@ class LivrosController extends Controller
             'id_genero'=>['nullable','numeric','min:1'],
             'sinopse'=>['nullable','min:3','max:255']
         ]);
-        if(Gate::allows('admin')){
+        if(Gate::allows('atualizar-livro',$livro)||Gate::allows('admin')){
             if(Auth::check()){
                 $userAtual=Auth::user()->id;
                 $novoLivro['id_user']=$userAtual;
@@ -94,7 +94,7 @@ class LivrosController extends Controller
     public function edit(Request $request){
         $id = $request->id;
         $livro=Livro::where('id_livro',$id)->with(['genero','autores','editoras','users'])->first();
-        if(Gate::allows('atualizar-livro',$livro)||Gate::alows('admin')){
+        if(Gate::allows('atualizar-livro',$livro)||Gate::allows('admin')){
             $autores=Autor::all();
             $genero=Genero::all();
             $editoras=Editora::all();
@@ -153,7 +153,7 @@ class LivrosController extends Controller
             'id_genero'=>['nullable','numeric'],
             'sinopse'=>['nullable','min:3','max:255']
         ]);
-        if(Gate::alows('admin')){
+        if(Gate::allows('atualizar-livro',$livro)||Gate::allows('admin')){
             $autores=$request->id_autor;
             $editora=$request->id_editora;
             $editarlivro=$livro->update($editLivro);
@@ -172,7 +172,7 @@ class LivrosController extends Controller
     public function deleted(Request $r){
         $id = $r->id;
         $livro=Livro::where('id_livro',$id)->first();
-        if(Gate::alows('admin')){
+        if(Gate::allows('atualizar-livro',$livro)||Gate::allows('admin')){
             if(isset($livro->users->id_user)){
                 if(Auth::user()->id == $livro->users->id_user){
                     if(is_null($livro)){
@@ -204,7 +204,7 @@ class LivrosController extends Controller
     }
     public function destroy(Request $request){
         $livro= Livro::where('id_livro', $request->id)->first();
-        if(Gate::alows('admin')){
+        if(Gate::allows('atualizar-livro',$livro)||Gate::allows('admin')){
             $autoresLivro=Livro::findOrfail($request->id)->autores;
             $editorasLivro=Livro::findOrfail($request->id)->editoras;
             $livro->autores()->detach($autoresLivro);

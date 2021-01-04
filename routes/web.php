@@ -154,3 +154,9 @@ Route::post('/form','App\Http\Controllers\PesquisaController@formenviado')
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//Admin
+
+Route::get('/user','App\Http\Controllers\UsersController@index')
+    ->name('users.index');
