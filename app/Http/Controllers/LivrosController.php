@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 use App\Models\Livro;
 use App\Models\Genero;
@@ -72,6 +73,7 @@ class LivrosController extends Controller
             'isbn'=>['nullable','min:13','max:13'],
             'observacoes'=>['nullable','min:3','max:255'],
             'imagem_capa'=>['image','nullable','max:2000'],
+            'ficheiro_livro'=>['file','mimes:pdf,doc,docx','max:2000'],
             'id_genero'=>['nullable','numeric','min:1'],
             'sinopse'=>['nullable','min:3','max:255']
         ]);
@@ -80,6 +82,12 @@ class LivrosController extends Controller
             $nomeImagem=time().'_'.$nomeImagem;
             $guardarImagem=$request->file('imagem_capa')->storeAs('imagens/livros',$nomeImagem);
             $novoLivro['imagem_capa']=$nomeImagem;
+        }
+        if($request->hasfile('ficheiro_livro')){
+            $nomeFicheiro=$request->file('ficheiro_livro')->getClientOriginalName();
+            $nomeFicheiro=time().'_'.$nomeFicheiro;
+            $guardarFicheiro=$request->file('ficheiro_livro')->storeAs('imagens/ficheiros',$nomeFicheiro);
+            $novoLivro['ficheiro_livro']=$nomeFicheiro;
         }
         if(Gate::allows('admin')){
             if(Auth::check()){
@@ -158,6 +166,8 @@ class LivrosController extends Controller
     public function update(Request $request){
         $id = $request->id;
         $livro=Livro::where('id_livro',$id)->with(['genero','autores','editoras','users'])->first();
+        $imagemAntiga=$livro->imagem_capa;
+        $ficheiroAntigo=$livro->ficheiro_livro;
         $editLivro=$request->validate([
             'titulo'=>['required','min:3','max:100'],
             'idioma'=>['required','min:3','max:10'],
@@ -166,9 +176,28 @@ class LivrosController extends Controller
             'isbn'=>['nullable','min:13','max:13'],
             'observacoes'=>['nullable','min:3','max:255'],
             'imagem_capa'=>['image','nullable','max:2000'],
+            'ficheiro_livro'=>['file','mimes:pdf,doc,docx','max:2000'],
             'id_genero'=>['nullable','numeric'],
             'sinopse'=>['nullable','min:3','max:255']
         ]);
+        if($request->hasfile('imagem_capa')){
+            $nomeImagem=$request->file('imagem_capa')->getClientOriginalName();
+            $nomeImagem=time().'_'.$nomeImagem;
+            $guardarImagem=$request->file('imagem_capa')->storeAs('imagens/livros',$nomeImagem);
+            if(!is_null($imagemAntiga)){
+                Storage::Delete('imagens/livros/'.$imagemAntiga);
+            }
+            $editLivro['imagem_capa']=$nomeImagem;
+        }
+        if($request->hasfile('ficheiro_livro')){
+            $nomeFicheiro=$request->file('ficheiro_livro')->getClientOriginalName();
+            $nomeFicheiro=time().'_'.$nomeFicheiro;
+            $guardarFicheiro=$request->file('ficheiro_livro')->storeAs('imagens/ficheiros',$nomeFicheiro);
+            if(!is_null($ficheiroAntigo)){
+                Storage::Delete('imagens/ficheiros/'.$ficheiroAntigo);
+            }
+            $editLivro['ficheiro_livro']=$nomeFicheiro;
+        }
         if(Gate::allows('atualizar-livro',$livro)||Gate::allows('admin')){
             $autores=$request->id_autor;
             $editora=$request->id_editora;

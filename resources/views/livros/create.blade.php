@@ -44,6 +44,11 @@ Imagem Capa:  <input type="file" name="imagem_capa" value=" {{old('imagem_capa')
 Deverá ter um Imagem Capa correto<br>
 @endif
 
+Ficheiro Livro:  <input type="file" name="ficheiro_livro" value="{{old('ficheiro_livro')}}"><br>
+@if($errors->has('ficheiro_livro'))
+Deverá ter um Ficheiro correto<br>
+@endif
+
 Genero: <select name="id_genero">
     @foreach($genero as $generos)
         <option value="{{$generos->id_genero}}">{{$generos->designacao}}</option>

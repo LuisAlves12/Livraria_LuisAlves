@@ -24,7 +24,7 @@ Data Nascimento: <input type="date" name="data_nascimento" value="{{old('data_na
 Deverá ter um Data Nascimento correto<br>
 @endif
 
-Fotografia: <input type="text" name="fotografia" value="{{old('fotografia')}}"><br>
+Fotografia: <input type="file" name="fotografia" value="{{old('fotografia')}}"><br>
 @if($errors->has('fotografia'))
 Deverá ter um Fotografia correto<br>
 @endif

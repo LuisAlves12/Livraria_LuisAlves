@@ -18,6 +18,7 @@ class Livro extends Model
         'isbn',
         'observacoes',
         'imagem_capa',
+        'ficheiro_livro',
         'id_genero',
         'id_autor',
         'id_user',

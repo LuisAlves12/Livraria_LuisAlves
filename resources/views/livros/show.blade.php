@@ -18,7 +18,8 @@ Data Edição:{{$livro->data_edicao->format('d-m-Y')}}<br>
 
 Total paginas:{{$livro->total_paginas}}<br>
 Observações:{{$livro->observacoes}}<br>
-Imagem Capa: <img src="{{asset('imagens/livros/'.$livro->imagem_capa)}}"><br>
+Imagem Capa: @if(isset($livro->imagem_capa ))<img src="{{asset('imagens/livros/'.$livro->imagem_capa)}}" style="width:10%">@endif<br>
+Ficheiro livro: @if(isset($livro->ficheiro_livro))<a href="{{asset('imagens/ficheiros/'.$livro->ficheiro_livro)}}" target="_blank">PDF</a>@endif<br>
 
 @if(count($livro->editoras)>0)
         @foreach($livro->editoras as $editora)

@@ -20,12 +20,13 @@ Nacionalidade: <input type="text" name="nacionalidade" value="{{$autores->nacion
 Deverá ter um Nacionalidade correto<br>
 @endif
 
-Data Nascimento: <input type="date" name="data_nascimento" value="@if(!is_null($autores->data_nascimento){{$autores->data_nascimento->format('Y-m-d')}}@endif><br>
+Data Nascimento: <input type="date" name="data_nascimento" value="@if(!is_null($autores->data_nascimento)){{$autores->data_nascimento->format('Y-m-d')}}@endif"><br>
 @if($errors->has('data_nascimento'))
 Deverá ter um Data Nascimento correto<br>
 @endif
+<br>
 
-Fotografia: <input type="text" name="fotografia" value="{{$autores->fotografia}}"><br>
+Fotografia: <input type="file" name="fotografia" value="{{$autores->fotografia}}"><img src="{{asset('imagens/autores/'.$autores->fotografia)}}" style="width:10%"><br>
 @if($errors->has('fotografia'))
 Deverá ter um Fotografia correto<br>
 @endif

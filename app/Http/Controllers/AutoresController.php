@@ -50,8 +50,14 @@ class AutoresController extends Controller
             'nome'=>['required','min:3','max:100'],
             'nacionalidade'=>['nullable','min:3','max:20'],
             'data_nascimento'=>['nullable','date'],
-            'fotografia'=>['nullable','min:3','max:255'],
+            'fotografia'=>['image','nullable','max:2000'],
         ]);
+        if($request->hasfile('fotografia')){
+            $autorImagem=$request->file('fotografia')->getClientOriginalName();
+            $autorImagem=time().'_'.$autorImagem;
+            $guardarImagem=$request->file('fotografia')->storeAs('imagens/autores',$autorImagem);
+            $editAutor['fotografia']=$autorImagem;
+        }
         if(Gate::allows('admin')){
             $autor=Autor::create($novoAutor);
             return redirect()->route('autores.show',[
@@ -84,12 +90,22 @@ class AutoresController extends Controller
     public function update(Request $request){
         $ida = $request->ida;
         $autores=Autor::where('id_autor',$ida)->with('livros')->first();
+        $imagemAntiga=$autores->fotografia;
         $editAutor=$request->validate([
             'nome'=>['required','min:3','max:100'],
             'nacionalidade'=>['nullable','min:3','max:20'],
             'data_nascimento'=>['nullable','date'],
-            'fotografia'=>['nullable','min:3','max:255'],
+            'fotografia'=>['image','nullable','max:2000'],
         ]);
+        if($request->hasfile('fotografia')){
+            $autorImagem=$request->file('fotografia')->getClientOriginalName();
+            $autorImagem=time().'_'.$autorImagem;
+            $guardarImagem=$request->file('fotografia')->storeAs('imagens/autores',$autorImagem);
+            if(!is_null($imagemAntiga)){
+                Storage::Delete('imagens/autores/'.$imagemAntiga);
+            }
+            $editAutor['fotografia']=$autorImagem;
+        }
         if(Gate::allows('admin')){
             $editarautor=$autores->update($editAutor);
             return redirect()->route('autores.show',[

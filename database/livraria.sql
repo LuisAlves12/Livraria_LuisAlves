@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Jan-2021 às 17:59
+-- Generation Time: 07-Jan-2021 às 16:20
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -98,7 +98,11 @@ INSERT INTO `autores_livros` (`id_al`, `id_autor`, `id_livro`, `updated_at`, `cr
 (25, 12, 11, '2020-12-04 15:53:38', '2020-12-04 15:53:38'),
 (26, 13, 11, '2020-12-04 15:53:38', '2020-12-04 15:53:38'),
 (27, 10, 12, '2020-12-04 15:53:48', '2020-12-04 15:53:48'),
-(28, 11, 12, '2020-12-04 15:53:48', '2020-12-04 15:53:48');
+(28, 11, 12, '2020-12-04 15:53:48', '2020-12-04 15:53:48'),
+(43, 3, 21, '2021-01-07 10:09:11', '2021-01-07 10:09:11'),
+(44, 3, 1, '2021-01-07 13:50:16', '2021-01-07 13:50:16'),
+(48, 2, 23, '2021-01-07 15:02:17', '2021-01-07 15:02:17'),
+(49, 3, 23, '2021-01-07 15:02:17', '2021-01-07 15:02:17');
 
 -- --------------------------------------------------------
 
@@ -184,7 +188,11 @@ INSERT INTO `editoras_livros` (`id_editora`, `id_livro`, `created_at`, `updated_
 (2, 12, '2020-12-04 16:43:52', '2020-12-04 16:43:52', NULL),
 (3, 12, '2020-12-04 16:43:52', '2020-12-04 16:43:52', NULL),
 (4, 12, '2020-12-04 16:43:52', '2020-12-04 16:43:52', NULL),
-(5, 12, '2020-12-04 16:43:52', '2020-12-04 16:43:52', NULL);
+(5, 12, '2020-12-04 16:43:52', '2020-12-04 16:43:52', NULL),
+(2, 21, '2021-01-07 10:09:11', '2021-01-07 10:09:11', NULL),
+(3, 21, '2021-01-07 10:09:11', '2021-01-07 10:09:11', NULL),
+(3, 1, '2021-01-07 13:50:16', '2021-01-07 13:50:16', NULL),
+(2, 23, '2021-01-07 15:02:17', '2021-01-07 15:02:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -230,7 +238,8 @@ CREATE TABLE `likes` (
 
 INSERT INTO `likes` (`id_livro`, `id_user`, `id_like`) VALUES
 (1, 1, 2),
-(1, 2, 3);
+(1, 2, 3),
+(21, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -247,6 +256,7 @@ CREATE TABLE `livros` (
   `isbn` varchar(13) DEFAULT NULL,
   `observacoes` varchar(255) DEFAULT NULL,
   `imagem_capa` varchar(255) DEFAULT NULL,
+  `ficheiro_livro` varchar(255) DEFAULT NULL,
   `id_genero` int(11) DEFAULT NULL,
   `id_autor` int(11) DEFAULT NULL,
   `sinopse` varchar(255) DEFAULT NULL,
@@ -260,19 +270,20 @@ CREATE TABLE `livros` (
 -- Extraindo dados da tabela `livros`
 --
 
-INSERT INTO `livros` (`id_livro`, `titulo`, `idioma`, `total_paginas`, `data_edicao`, `isbn`, `observacoes`, `imagem_capa`, `id_genero`, `id_autor`, `sinopse`, `created_at`, `updated_at`, `deleted_at`, `id_user`) VALUES
-(1, 'sistema de informação de apoio a gestão', 'Portugal', NULL, NULL, '9728589433214', NULL, NULL, 1, 1, NULL, NULL, '2020-12-04 15:17:15', NULL, 1),
-(2, 'cidades e regiões digitais:impacte na cidade e nas pessoas', 'Portugal', NULL, NULL, '1234567890123', NULL, NULL, 2, 1, NULL, NULL, '2020-12-04 15:51:50', NULL, 2),
-(3, 'Informatica e Competencias Tecnologicas para a Sociedade da Informação', 'Portugal', NULL, NULL, '9789728830304', NULL, NULL, 1, 3, NULL, NULL, NULL, NULL, 1),
-(4, 'Readings in Information Society', 'Portugal', NULL, NULL, '9789727228997', NULL, NULL, 3, 5, NULL, NULL, NULL, NULL, 2),
-(5, 'Sociedade da Informação: balanço e implicações', 'Portugal', NULL, NULL, '9789728830182', NULL, NULL, 3, 7, NULL, NULL, '2020-12-04 15:52:46', NULL, 2),
-(6, 'O Tribunal de Contas e as Autarquias Locais', 'Portugal', NULL, NULL, '9789899936614', NULL, NULL, 2, 7, NULL, NULL, NULL, NULL, 1),
-(7, 'Informática e Competências Tecnológicas para a Sociedade da Informação 2ed', 'Portugal', NULL, '2019-10-15 00:00:00', '9789728830304', NULL, NULL, 2, 8, NULL, NULL, NULL, NULL, 1),
-(8, 'Negócio Eletrónico - conceitos e perspetivas de desenvolvimento', 'Portugal', NULL, NULL, '9789899552258', NULL, NULL, 1, 8, NULL, NULL, NULL, NULL, 2),
-(9, 'Gestão da Informação na Biblioteca Escolar', 'Portugal', NULL, NULL, '9789722314916', NULL, NULL, 1, 9, NULL, NULL, NULL, NULL, 1),
-(10, 'A virtual environment to share knowledge', 'Portugal', NULL, NULL, '9781351729901', NULL, NULL, 2, 4, NULL, NULL, NULL, NULL, 2),
-(11, 'Ciência da Informação: contributos para o seu estudo', 'Português', NULL, NULL, '9789896430900', NULL, NULL, 1, 4, NULL, NULL, NULL, NULL, 1),
-(12, 'Repensar a Sociedade da Informação e do Conhecimento no Início do Século XXI', 'Portugal', NULL, NULL, '9789726186953', NULL, NULL, 3, 4, NULL, NULL, NULL, NULL, 2);
+INSERT INTO `livros` (`id_livro`, `titulo`, `idioma`, `total_paginas`, `data_edicao`, `isbn`, `observacoes`, `imagem_capa`, `ficheiro_livro`, `id_genero`, `id_autor`, `sinopse`, `created_at`, `updated_at`, `deleted_at`, `id_user`) VALUES
+(1, 'sistema de informação de apoio a gestão', 'Portugal', NULL, NULL, '9728589433214', 'portugues', '1610029060_sistemadeinf.jpg', '', 1, 1, NULL, NULL, '2021-01-07 14:17:40', NULL, 1),
+(2, 'cidades e regiões digitais:impacte na cidade e nas pessoas', 'Portugal', NULL, NULL, '1234567890123', NULL, '1610027858_cidades.jpg', '', 2, 1, NULL, NULL, '2021-01-07 13:57:38', NULL, 1),
+(3, 'Informatica e Competencias Tecnologicas para a Sociedade da Informação', 'Portugal', NULL, NULL, '9789728830304', NULL, '1610027882_informaticaecompetenciatecnologias.jpg', '', 1, 3, NULL, NULL, '2021-01-07 13:58:02', NULL, 1),
+(4, 'Readings in Information Society', 'Portugal', NULL, NULL, '9789727228997', NULL, '1610028166_readings.gif', '', 3, 5, NULL, NULL, '2021-01-07 14:02:46', NULL, 1),
+(5, 'Sociedade da Informação: balanço e implicações', 'Portugal', NULL, NULL, '9789728830182', NULL, '1610028185_sociedadedeinforma.jpg', '', 3, 7, NULL, NULL, '2021-01-07 14:03:05', NULL, 1),
+(6, 'O Tribunal de Contas e as Autarquias Locais', 'Portugal', NULL, NULL, '9789899936614', NULL, '1610028200_tribunal.jpg', '', 2, 7, NULL, NULL, '2021-01-07 14:03:20', NULL, 1),
+(7, 'Informática e Competências Tecnológicas para a Sociedade da Informação 2ed', 'Portugal', NULL, '2019-10-15 00:00:00', '9789728830304', NULL, '1610028219_informatica2d.jpg', '', 2, 8, NULL, NULL, '2021-01-07 14:03:39', NULL, 1),
+(8, 'Negócio Eletrónico - conceitos e perspetivas de desenvolvimento', 'Portugal', NULL, NULL, '9789899552258', NULL, '1610028236_negocioeletronico.jpg', '', 1, 8, NULL, NULL, '2021-01-07 14:03:56', NULL, 1),
+(10, 'A virtual environment to share knowledge', 'Portugal', NULL, NULL, '9781351729901', NULL, '1610028253_virtual.jpg', '', 2, 4, NULL, NULL, '2021-01-07 14:04:13', NULL, 1),
+(11, 'Ciência da Informação: contributos para o seu estudo', 'Português', NULL, NULL, '9789896430900', NULL, '1610028271_cienciadeinformacao.jpg', '', 1, 4, NULL, NULL, '2021-01-07 14:04:31', NULL, 1),
+(12, 'Repensar a Sociedade da Informação e do Conhecimento no Início do Século XXI', 'Portugal', NULL, NULL, '9789726186953', NULL, '1610028285_repensarasociedade.jpg', '', 3, 4, NULL, NULL, '2021-01-07 14:04:45', NULL, 1),
+(21, 'Uma aventura', 'portugues', 123, NULL, '1234567890123', 'portugues', '1610030969_umaaventura.jpg', '1610031057_1610030969_1610030918_aventura.pdf', 1, NULL, NULL, '2021-01-07 10:09:11', '2021-01-07 14:50:57', NULL, 2),
+(23, 'Uma Aventura musical', 'portugues', 123, '2021-01-25 00:00:00', '1234567890123', NULL, '1610031737_umaaventura1.jpg', '1610031737_aventura.pdf', 3, NULL, NULL, '2021-01-07 15:02:17', '2021-01-07 15:02:17', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -374,7 +385,7 @@ ALTER TABLE `autores`
 -- AUTO_INCREMENT for table `autores_livros`
 --
 ALTER TABLE `autores_livros`
-  MODIFY `id_al` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_al` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `editoras`
@@ -392,13 +403,13 @@ ALTER TABLE `generos`
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `livros`
 --
 ALTER TABLE `livros`
-  MODIFY `id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `users`

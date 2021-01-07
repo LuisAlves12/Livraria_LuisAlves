@@ -6,7 +6,7 @@ Livraria
 Livros
 @endsection
 @section('conteudo')
-@if(auth()->user()->name == $livro->users->name)
+@if(auth()->user()->name == $livro->users->name || Gate::allows('admin'))
 <form action="{{route('livros.update',['id'=>$livro->id_livro])}}" enctype="multipart/form-data" method="post">
     @method('patch')
     @csrf
@@ -41,14 +41,19 @@ Observações: <textarea  name="observacoes">{{$livro->observacoes}}</textarea><
 Deverá ter um Observações correto<br>
 @endif
 
-Imagem Capa: <input type="file" name="imagem_capa" value="{{$livro->imagem_capa}}"><br>
+Imagem Capa: <input type="file" name="imagem_capa" value="{{$livro->imagem_capa}}"><img src="{{asset('imagens/livros/'.$livro->imagem_capa)}}" style="width:10%"><br>
 @if($errors->has('imagem_capa'))
 Deverá ter um Imagem Capa correto<br>
 @endif
 
+Ficheiro livro: <input type="file" name="ficheiro_livro" value="{{$livro->ficheiro_livro}}"><a href="{{asset('imagens/ficheiros/'.$livro->ficheiro_livro)}}" target="_blank">PDF</a><br>
+@if($errors->has('ficheiro_livro'))
+Deverá ter um Ficheiro correto<br>
+@endif
+
 Genero: <select name="id_genero">
     @foreach($genero as $generos)
-        <option value="{{$generos->id_genero}}" @if($generos->id_genero==$livro->id_genero)selected @endif>{{$generos->designacao}}</option>
+        <option value="{{$generos->id_genero}}" >@if($generos->id_genero==$livro->id_genero)selected @endif>{{$generos->designacao}}</option>
     @endforeach
 </select><br>
 @if($errors->has('id_genero'))
@@ -57,7 +62,7 @@ Deverá ter um Género correto <br>
 
 Autor(es): <select name="id_autor[]" multiple="multiple">
     @foreach($autores as $autor)
-        <option value="{{$autor->id_autor}}" @if(in_array($autor->id_autor, $autoresLivro))selected @endif>{{$autor->nome}}</option><br>
+        <option value="{{$autor->id_autor}}"> @if(in_array($autor->id_autor, $autoresLivro))selected @endif{{$autor->nome}}</option><br>
     @endforeach
 </select><br>
 @if($errors->has('id_autor'))

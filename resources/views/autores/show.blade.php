@@ -20,7 +20,7 @@ Nome: {{$autores->nome}}<br>
     @endif
 Nacionalidade: {{$autores->nacionalidade}} <i class="{{strtolower($autores->nacionalidade)}} flag"> </i><br>
 Data de Nascimento: {{$autores->data_nascimento}}<br>
-Fotografia: {{$autores->fotografia}}<br>
+Fotografia: @if(isset($livro->fotografia ))<img src="{{asset('imagens/ficheiros/'.$autores->fotografia)}}" style="width:10%">@endif<br>
 Created_at: {{$autores->created_at}}<br>
 Updated_at: {{$autores->updated_at}}<br>
 Deleted_at: {{$autores->deleted_at}}
