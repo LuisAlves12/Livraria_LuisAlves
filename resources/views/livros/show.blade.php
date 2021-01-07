@@ -18,7 +18,7 @@ Data Edição:{{$livro->data_edicao->format('d-m-Y')}}<br>
 
 Total paginas:{{$livro->total_paginas}}<br>
 Observações:{{$livro->observacoes}}<br>
-Imagem Capa:{{$livro->imagem_capa}}<br>
+Imagem Capa: <img src="{{asset('imagens/livros/'.$livro->imagem_capa)}}"><br>
 
 @if(count($livro->editoras)>0)
         @foreach($livro->editoras as $editora)

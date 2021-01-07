@@ -23,6 +23,8 @@ class LivrosController extends Controller
             'livros'=>$livros
         ]);
     }
+
+
     public function show(Request $request){
         $idLivro = $request->id;
         $utilizador="";
@@ -40,6 +42,8 @@ class LivrosController extends Controller
             'utilizador'=>$utilizador
         ]);
     }
+
+
     public function create(){
         if(Auth::check()){
             $autores=Autor::all();
@@ -56,6 +60,8 @@ class LivrosController extends Controller
                 ->with('msg','Não têm permissão para aceder a area pretendida');
         } 
     }
+
+
     public function store(Request $request){
         //$novoLivro=$request->all();
         $novoLivro=$request->validate([
@@ -65,11 +71,17 @@ class LivrosController extends Controller
             'data_edicao'=>['nullable','date'],
             'isbn'=>['nullable','min:13','max:13'],
             'observacoes'=>['nullable','min:3','max:255'],
-            'imagem_capa'=>['nullable','min:3','max:255'],
+            'imagem_capa'=>['image','nullable','max:2000'],
             'id_genero'=>['nullable','numeric','min:1'],
             'sinopse'=>['nullable','min:3','max:255']
         ]);
-        if(Gate::allows('atualizar-livro',$livro)||Gate::allows('admin')){
+        if($request->hasfile('imagem_capa')){
+            $nomeImagem=$request->file('imagem_capa')->getClientOriginalName();
+            $nomeImagem=time().'_'.$nomeImagem;
+            $guardarImagem=$request->file('imagem_capa')->storeAs('imagens/livros',$nomeImagem);
+            $novoLivro['imagem_capa']=$nomeImagem;
+        }
+        if(Gate::allows('admin')){
             if(Auth::check()){
                 $userAtual=Auth::user()->id;
                 $novoLivro['id_user']=$userAtual;
@@ -91,6 +103,8 @@ class LivrosController extends Controller
                 ->with('msg','Não têm permissão para aceder a area pretendida');
         } 
     }
+
+
     public function edit(Request $request){
         $id = $request->id;
         $livro=Livro::where('id_livro',$id)->with(['genero','autores','editoras','users'])->first();
@@ -139,6 +153,8 @@ class LivrosController extends Controller
 
         } 
     }
+
+
     public function update(Request $request){
         $id = $request->id;
         $livro=Livro::where('id_livro',$id)->with(['genero','autores','editoras','users'])->first();
@@ -149,7 +165,7 @@ class LivrosController extends Controller
             'data_edicao'=>['nullable','date'],
             'isbn'=>['nullable','min:13','max:13'],
             'observacoes'=>['nullable','min:3','max:255'],
-            'imagem_capa'=>['nullable','min:3','max:255'],
+            'imagem_capa'=>['image','nullable','max:2000'],
             'id_genero'=>['nullable','numeric'],
             'sinopse'=>['nullable','min:3','max:255']
         ]);
@@ -169,6 +185,8 @@ class LivrosController extends Controller
 
         } 
     }
+
+
     public function deleted(Request $r){
         $id = $r->id;
         $livro=Livro::where('id_livro',$id)->first();
@@ -202,6 +220,8 @@ class LivrosController extends Controller
 
         } 
     }
+
+
     public function destroy(Request $request){
         $livro= Livro::where('id_livro', $request->id)->first();
         if(Gate::allows('atualizar-livro',$livro)||Gate::allows('admin')){
@@ -222,6 +242,8 @@ class LivrosController extends Controller
                 ->with('msg','Não têm permissão para aceder a area pretendida');
         }
     }
+
+
     public function likes(Request $request){
         $id=$request->id;
         if(Auth()->check()){

@@ -7,7 +7,7 @@ Livros
 @endsection
 @section('conteudo')
 @if(auth()->user()->name == $livro->users->name)
-<form action="{{route('livros.update',['id'=>$livro->id_livro])}}" method="post">
+<form action="{{route('livros.update',['id'=>$livro->id_livro])}}" enctype="multipart/form-data" method="post">
     @method('patch')
     @csrf
 
@@ -41,7 +41,7 @@ Observações: <textarea  name="observacoes">{{$livro->observacoes}}</textarea><
 Deverá ter um Observações correto<br>
 @endif
 
-Imagem Capa: <input type="text" name="imagem_capa" value="{{$livro->imagem_capa}}"><br>
+Imagem Capa: <input type="file" name="imagem_capa" value="{{$livro->imagem_capa}}"><br>
 @if($errors->has('imagem_capa'))
 Deverá ter um Imagem Capa correto<br>
 @endif
